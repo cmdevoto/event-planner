@@ -1,0 +1,7 @@
+sqlplus -S caroline/cdevoto @createAll
+sqlldr caroline/cdevoto control=ctls/users.ctl
+sqlldr caroline/cdevoto control=ctls/groups.ctl
+sqlldr caroline/cdevoto control=ctls/events.ctl
+sqlldr caroline/cdevoto control=ctls/eventInvitations.ctl
+sqlldr caroline/cdevoto control=ctls/eventPostings.ctl
+sqlldr caroline/cdevoto control=ctls/groupMembership.ctl
