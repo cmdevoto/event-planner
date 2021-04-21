@@ -19,12 +19,6 @@ def __createDatabaseConnectionPool__():
         g.connectionPool = cx_Oracle.SessionPool(username, password,
         location, min=2, max=8, increment=1, encoding='UTF-8')
 
-@bp.teardown_app_request
-def __closeDatabase__(self):
-    if poolName in g:
-        connectionPool = g.pop(poolName, None)
-        connectionPool.close()
-
 def __fetchQuery__(query, args, fetchstyle):
     dbConnection = __getDatabaseConnection__()
     cursor = dbConnection.cursor()
@@ -46,6 +40,6 @@ def commit(query, args):
     dbConnection = __getDatabaseConnection__()
     cursor = dbConnection.cursor()
     result = cursor.execute(query, args)
-    cursor.commit()
+    dbConnection.commit()
     dbConnection.close()
     return result

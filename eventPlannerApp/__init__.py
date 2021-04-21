@@ -5,11 +5,13 @@ import os
 from flask              import Flask
 from flask_session      import Session
 
-session = Session()
+import cx_Oracle
 
 # App packages
 from . import config, dbInterface
 from .modules import auth, home
+
+os.environ["LD_LIBRARY_PATH"]="/u01/app/oracle/product/11.2.0/xe/lib"
 
 def create_app():
 
