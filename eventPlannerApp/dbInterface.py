@@ -36,10 +36,10 @@ def __fetchQuery__(query, args, fetchstyle):
     dbConnection.close()
 
 
-def fetch_one(query, args):
+def fetchOne(query, args):
     return __fetchQuery__(query, args, 'one')
 
-def fetch_all(query, args):
+def fetchAll(query, args):
     return __fetchQuery__(query, args, 'all')
 
 def commit(query, args):
