@@ -5,8 +5,6 @@ import os
 from flask              import Flask
 from flask_session      import Session
 
-import cx_Oracle
-
 # App packages
 from . import config, dbInterface
 from .modules import auth, home
