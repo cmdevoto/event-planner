@@ -13,9 +13,9 @@ def __getDatabaseConnection__():
 
 def __createDatabaseConnectionPool__():
     if poolName not in g:
-        userName = 'camstutz'
-        password = 'password'
-        location = 'localhost'
+        username = current_app.config['DatabaseUser']
+        password = current_app.config['DatabasePass']
+        location = current_app.config['DatabaseHost']
         g.connectionPool = cx_Oracle.SessionPool(username, password,
         location, min=2, max=8, increment=1, encoding='UTF-8')
 
