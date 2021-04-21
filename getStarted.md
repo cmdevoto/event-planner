@@ -38,6 +38,7 @@ Do this just inside the event-planner directory, so that if you were to ls you'd
 
 ### Step 6: Source the Virtual Environment
 
+You'll need to do this each time you start a new session and want to run the app.
 `source eventPlannerEnv/bin/activate`
 
 ---
@@ -48,7 +49,14 @@ Do this just inside the event-planner directory, so that if you were to ls you'd
 
 ---
 
-### Step 8: Run the app
+### Step 8: Update config file
+
+Inside the eventPlannerApp directory there's a file called config.py. 
+Inside this file, change the username and password for the oracle database so that the app will have access.
+
+---
+
+### Step 9: Run the app
 
 `python3 app.py`
 
