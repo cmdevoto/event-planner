@@ -7,6 +7,6 @@ class DefaultConfig():
     SECRET_KEY = 'fsadlkafslSkA_N37o1lstp_adsfklj23flkj3425lRv-FRzwJo1LJlLTjrvN1cFwuGD_RY'
 
     # Database credentials
-    DatabaseUser = 'event_app'
-    DatabasePass = 'rbD4eJUgYE9NliQxe5KAOxxb'
-    DatabaseHost = 'localhost'
+    DATABASE_USER = 'event_app'
+    DATABASE_PASS = 'rbD4eJUgYE9NliQxe5KAOxxb'
+    DATABASE_HOST = 'localhost'
