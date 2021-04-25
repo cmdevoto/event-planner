@@ -1,6 +1,6 @@
 from flask import render_template, request
 from werkzeug.security import generate_password_hash
-import ~/event-planner/eventPlannerApp/dbInterface.py
+from ... import dbInterface
 from . import bp
 
 @bp.route("/signup")
