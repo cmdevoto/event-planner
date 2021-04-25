@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 11.2.0.2.0 - Production on Wed Apr 21 21:44:37 2021
+SQL*Loader: Release 11.2.0.2.0 - Production on Sun Apr 25 19:52:41 2021
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
@@ -27,4 +27,24 @@ INVITERUSERNAME                      NEXT     *   ,  O(") CHARACTER
 INVITEEUSERNAME                      NEXT     *   ,  O(") CHARACTER            
 INVITATIONMESSAGE                    NEXT     *   ,  O(") CHARACTER            
 
-SQL*Loader-601: For INSERT option, table must be empty.  Error on table EVENTINVITATIONS
+
+Table EVENTINVITATIONS:
+  2 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  66048 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:             2
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Sun Apr 25 19:52:41 2021
+Run ended on Sun Apr 25 19:52:41 2021
+
+Elapsed time was:     00:00:00.02
+CPU time was:         00:00:00.00
