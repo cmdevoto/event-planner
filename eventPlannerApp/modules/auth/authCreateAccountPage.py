@@ -15,8 +15,14 @@ def createAccountSubmit():
     email = request.form['email']
     password = generate_password_hash(request.form['pass'], "sha256")
     
-    commit("insert into TABLE " + user + ", " + firstName + ", " + lastName + ", " + password + ", " + email, {})
-
-    print(password)
-    return render_template("home/homePage.html")
+    insert_query = "insert into users values (:username, :firstName, :lastName, :email, :password)"
+    insert_params = {
+        "username": user,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "password": password
+        }
+    result = dbInterface.commit(insert_query, insert_params)
+    return redirect("home/homePage.html")
     
