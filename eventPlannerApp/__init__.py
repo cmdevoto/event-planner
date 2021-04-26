@@ -46,6 +46,6 @@ def create_app():
         # Module blueprints
         application.register_blueprint(modules.auth.bp)
         application.register_blueprint(modules.home.bp)
-        print(dbInterface.fetchAll("select * from customer", {}))
+    print(dbInterface.fetchAll("select * from customer", {}))
 
     return application
