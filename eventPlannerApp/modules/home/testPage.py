@@ -5,7 +5,7 @@ from . import bp
 from ... import dbInterface
 from flask_login import current_user, login_user, LoginManager
 @bp.route("/test/databaseRetrieveItems")
-@flask_login.login_required
+@login_required
 def testDatabaseRetrieveItemsRoute():
     resultingProducts = dbInterface.fetchAll("select * from product", {})
     data = {
