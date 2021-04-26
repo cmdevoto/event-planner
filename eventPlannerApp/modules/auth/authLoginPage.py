@@ -21,7 +21,7 @@ def loginSubmit():
     print(email)
     print(password)
     print("Here is the password hash: ") 
-    print(result)
+    print(result[0])
 
     if(check_password_hash(result, password)):
         print("logged in")
