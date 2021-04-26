@@ -2,7 +2,7 @@ from flask import render_template, request, redirect
 from werkzeug.security import check_password_hash
 from . import bp
 from ... import dbInterface
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, LoginManager
 
 @bp.route("/login")
 def hello_route():
