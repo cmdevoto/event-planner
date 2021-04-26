@@ -24,7 +24,7 @@ def loginSubmit():
         print("logged in")
         user = User.User()
         user.id = email
-        flask_login.login_user(user)
+        login_user(user)
     else:
         print("not logged in")
 
