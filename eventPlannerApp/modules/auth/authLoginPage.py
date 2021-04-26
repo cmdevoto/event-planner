@@ -28,4 +28,4 @@ def loginSubmit():
     else:
         print("not logged in")
 
-    return redirect("home/homePage.html")
+    return redirect("/test/databaseRetrieveItems")
