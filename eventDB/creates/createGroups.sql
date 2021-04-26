@@ -6,3 +6,16 @@ create table groups
  CONSTRAINT groupsPK PRIMARY KEY (groupID),
  CONSTRAINT groupUsername FOREIGN KEY (ownerUsername) references users (username)
 );
+
+create sequence group_seq start with 1;
+
+create or replace trigger group_tr
+before insert on groups
+for each row
+
+begin
+  select group_seq.NEXTVAL
+  into :new.groupID
+  from dual;
+end;
+/

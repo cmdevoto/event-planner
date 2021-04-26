@@ -4,5 +4,6 @@ create table users
  lastName varchar(20),
  passwordHash varchar(20),
  email varchar(320),
+ associatedSchool varchar(50),
  CONSTRAINT usersPK PRIMARY KEY (username)
 );

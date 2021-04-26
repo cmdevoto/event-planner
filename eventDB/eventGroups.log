@@ -3,9 +3,9 @@ SQL*Loader: Release 11.2.0.2.0 - Production on Mon Apr 26 01:47:51 2021
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
-Control File:   ctls/eventInvitations.ctl
-Data File:      csv/eventInvitations.csv
-  Bad File:     ctls/eventInvitations.bad
+Control File:   ctls/eventGroups.ctl
+Data File:      csv/eventGroups.csv
+  Bad File:     ctls/eventGroups.bad
   Discard File:  none specified
  
  (Allow all discards)
@@ -17,29 +17,28 @@ Bind array:     64 rows, maximum of 256000 bytes
 Continuation:    none specified
 Path used:      Conventional
 
-Table EVENTINVITATIONS, loaded from every logical record.
+Table EVENTGROUPS, loaded from every logical record.
 Insert option in effect for this table: INSERT
 
    Column Name                  Position   Len  Term Encl Datatype
 ------------------------------ ---------- ----- ---- ---- ---------------------
 EVENTID                             FIRST     *   ,  O(") CHARACTER            
-INVITERUSERNAME                      NEXT     *   ,  O(") CHARACTER            
-INVITEEUSERNAME                      NEXT     *   ,  O(") CHARACTER            
-INVITATIONMESSAGE                    NEXT     *   ,  O(") CHARACTER            
+GROUPID                              NEXT     *   ,  O(") CHARACTER            
+GROUPNAME                            NEXT     *   ,  O(") CHARACTER            
 
 
-Table EVENTINVITATIONS:
-  2 Rows successfully loaded.
+Table EVENTGROUPS:
+  1 Row successfully loaded.
   0 Rows not loaded due to data errors.
   0 Rows not loaded because all WHEN clauses were failed.
   0 Rows not loaded because all fields were null.
 
 
-Space allocated for bind array:                  66048 bytes(64 rows)
+Space allocated for bind array:                  49536 bytes(64 rows)
 Read   buffer bytes: 1048576
 
 Total logical records skipped:          0
-Total logical records read:             2
+Total logical records read:             1
 Total logical records rejected:         0
 Total logical records discarded:        0
 
