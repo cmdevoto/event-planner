@@ -17,11 +17,11 @@ def loginSubmit():
     searchParams = {
         "email": email
         }
-    result = dbInterface.fetchOne(searchQuery, searchParams)
+    result = dbInterface.fetchOne(searchQuery, searchParams)[0]
     print(email)
     print(password)
     print("Here is the password hash: ") 
-    print(result[0])
+    print(result)
 
     if(check_password_hash(result, password)):
         print("logged in")
