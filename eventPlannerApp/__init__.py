@@ -23,7 +23,7 @@ def create_app():
     login.init_app(application)
     users = {}
 
-    print(dbInterface.fetchAll("select * from product", {}))
+    
 
     class User(UserMixin):
         pass
@@ -46,5 +46,6 @@ def create_app():
         # Module blueprints
         application.register_blueprint(modules.auth.bp)
         application.register_blueprint(modules.home.bp)
+        print(dbInterface.fetchAll("select * from customer", {}))
 
     return application
