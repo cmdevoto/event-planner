@@ -19,5 +19,6 @@ def loginSubmit():
         }
     result = dbInterface.fetchOne(searchQuery, searchParams)
     print("Here is the password hash: " + result) 
+    
 
     return redirect("home/homePage.html")
