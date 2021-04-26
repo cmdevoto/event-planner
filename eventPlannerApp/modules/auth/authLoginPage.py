@@ -9,7 +9,7 @@ def hello_route():
 
 
 @bp.route('/login', methods=['POST'])
-def createAccountSubmit():
+def loginSubmit():
     email = request.form['email']
     password = generate_password_hash(request.form['pass'], "sha256")
     
