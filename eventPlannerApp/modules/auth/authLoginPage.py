@@ -11,7 +11,7 @@ def hello_route():
 @bp.route('/login', methods=['POST'])
 def loginSubmit():
     email = request.form['email']
-    password = generate_password_hash(request.form['pass'], "sha256")
+    #password = generate_password_hash(request.form['pass'], "sha256")
     
     searchQuery = "select PASSWORDHASH from users where email = :email"
     searchParams = {
