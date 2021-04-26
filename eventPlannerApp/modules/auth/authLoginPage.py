@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, redirect
 from werkzeug.security import check_password_hash
 from . import bp
 from ... import dbInterface
@@ -19,6 +19,6 @@ def loginSubmit():
         }
     result = dbInterface.fetchOne(searchQuery, searchParams)
     print("Here is the password hash: " + result) 
-    
+
 
     return redirect("home/homePage.html")

@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect
 from werkzeug.security import generate_password_hash
 from ... import dbInterface
 from . import bp
