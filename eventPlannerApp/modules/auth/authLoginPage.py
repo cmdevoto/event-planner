@@ -2,6 +2,7 @@ from flask import render_template, request, redirect
 from werkzeug.security import check_password_hash
 from . import bp
 from ... import dbInterface
+from flask_login import current_user, login_user
 
 @bp.route("/login")
 def hello_route():
@@ -18,13 +19,10 @@ def loginSubmit():
         "email": email
         }
     result = dbInterface.fetchOne(searchQuery, searchParams)[0]
-    print(email)
-    print(password)
-    print("Here is the password hash: ") 
-    print(result)
 
     if(check_password_hash(result, password)):
         print("logged in")
+        login_user(email)
     else:
         print("not logged in")
 

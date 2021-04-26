@@ -4,6 +4,7 @@ import os
 # Flask packages
 from flask              import Flask
 from flask_session      import Session
+from flask_login        import login_required, current_user, login_user, logout_user
 
 # App packages
 from . import config, dbInterface
@@ -15,6 +16,10 @@ def create_app():
 
     # Create app object
     application = Flask(__name__)
+
+    #divs fucking with login stuff
+    login.init_app(application)
+    login.login_view = 'login'
 
     # Config
     application.config.from_object(config.DefaultConfig)
