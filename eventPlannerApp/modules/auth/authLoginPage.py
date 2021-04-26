@@ -22,5 +22,9 @@ def loginSubmit():
     print(password)
     print("Here is the password hash: " + result) 
 
+    if(check_password_hash(result, password)):
+        print("logged in")
+    else:
+        print("not logged in")
 
     return redirect("home/homePage.html")
