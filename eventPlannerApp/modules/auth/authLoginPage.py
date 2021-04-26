@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect
 from werkzeug.security import check_password_hash
 from . import bp
-from ... import dbInterface
+from ... import dbInterface, User
 from flask_login import current_user, login_user, LoginManager
 
 @bp.route("/login")
@@ -22,7 +22,9 @@ def loginSubmit():
 
     if(check_password_hash(result, password)):
         print("logged in")
-        #login_user(email)
+        user = User()
+        user.id = email
+        flask_login.login_user(user)
     else:
         print("not logged in")
 
