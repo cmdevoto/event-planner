@@ -19,7 +19,7 @@ def create_app():
 
     #divs fucking with login stuff
     login.init_app(application)
-    login.login_view = 'login'
+    login.login_view = 'loginSubmit'
 
     # Config
     application.config.from_object(config.DefaultConfig)
