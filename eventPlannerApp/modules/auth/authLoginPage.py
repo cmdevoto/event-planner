@@ -22,7 +22,7 @@ def loginSubmit():
 
     if(check_password_hash(result, password)):
         print("logged in")
-        login_user(email)
+        #login_user(email)
     else:
         print("not logged in")
 
