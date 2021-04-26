@@ -20,7 +20,8 @@ def loginSubmit():
     result = dbInterface.fetchOne(searchQuery, searchParams)
     print(email)
     print(password)
-    print("Here is the password hash: " + result) 
+    print("Here is the password hash: ") 
+    print(result)
 
     if(check_password_hash(result, password)):
         print("logged in")
