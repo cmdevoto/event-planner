@@ -25,7 +25,7 @@ def create_app():
     @login.user_loader
     def user_loader(email):
 
-        user = User()
+        user = User.User()
         user.id = email
         return user
 

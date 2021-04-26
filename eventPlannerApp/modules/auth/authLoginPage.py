@@ -22,7 +22,7 @@ def loginSubmit():
 
     if(check_password_hash(result, password)):
         print("logged in")
-        user = User()
+        user = User.User()
         user.id = email
         flask_login.login_user(user)
     else:
