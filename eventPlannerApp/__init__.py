@@ -28,7 +28,7 @@ def create_app():
     class User(UserMixin):
         pass
 
-    @login_manager.user_loader
+    @login.user_loader
     def user_loader(email):
         if email not in users:
             return
