@@ -3,8 +3,9 @@ from flask import redirect, render_template
 
 from . import bp
 from ... import dbInterface
-
+from flask_login import current_user, login_user, LoginManager, login_required
 @bp.route("/test/databaseRetrieveItems")
+@login_required
 def testDatabaseRetrieveItemsRoute():
     resultingProducts = dbInterface.fetchAll("select * from product", {})
     data = {
