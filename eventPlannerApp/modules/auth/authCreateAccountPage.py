@@ -1,7 +1,10 @@
 from flask import render_template, request, redirect
 from werkzeug.security import generate_password_hash
-from ... import dbInterface
 from . import bp
+
+from ... import dbInterface, User
+from flask_login import current_user, login_user, LoginManager
+
 
 @bp.route("/signup")
 def createAccountPageRoute():
@@ -9,7 +12,7 @@ def createAccountPageRoute():
 
 @bp.route('/signup', methods=['POST'])
 def createAccountSubmit():
-    user = request.form['username']
+    username = request.form['username']
     firstName = request.form['firstName']
     lastName = request.form['lastName']
     email = request.form['email']
@@ -18,7 +21,7 @@ def createAccountSubmit():
 
     insert_query = "insert into users values (:username, :firstName, :lastName, :password, :email, :associatedSchool)"
     insert_params = {
-        "username": user,
+        "username": username,
         "firstName": firstName,
         "lastName": lastName,
         "password": password,
@@ -26,5 +29,9 @@ def createAccountSubmit():
         "associatedSchool": associatedSchool
         }
     result = dbInterface.commit(insert_query, insert_params)
+    user = User.User()
+    user.id = username
+    login_user(user)    
+
     return redirect("/events")
     

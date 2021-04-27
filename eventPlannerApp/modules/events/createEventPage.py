@@ -12,6 +12,7 @@ def createEventPageRoute():
         "groups": resultingGroups
     }
     #logout_user()
+    print(current_user.get_id())
     return render_template("events/createEvent.html", data=data)
 
 
