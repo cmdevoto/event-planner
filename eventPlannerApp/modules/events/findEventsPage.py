@@ -5,7 +5,7 @@ from ... import dbInterface
 
 @bp.route("/findevents")
 def findEventsPageRoute():
-    resultingEvents = dbInterface.fetchAll("select * from events where accessStatus = 'public' ", {})
+    resultingEvents = dbInterface.fetchAll("select * from events where accessStatus = (:status)", {"status": "Public"})
     data = {
         "events": resultingEvents
     }
