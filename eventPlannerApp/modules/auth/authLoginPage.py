@@ -13,17 +13,18 @@ def hello_route():
 def loginSubmit():
     email = request.form['email']
     password = request.form['pass']
-    
-    searchQuery = "select PASSWORDHASH from users where email = :email"
+    username = request.form['username']    
+
+    searchQuery = "select PASSWORDHASH from users where username = :username"
     searchParams = {
-        "email": email
+        "username": username
         }
     result = dbInterface.fetchOne(searchQuery, searchParams)[0]
 
     if(check_password_hash(result, password)):
         print("logged in")
         user = User.User()
-        user.id = email
+        user.id = username
         login_user(user)
     else:
         print("not logged in")

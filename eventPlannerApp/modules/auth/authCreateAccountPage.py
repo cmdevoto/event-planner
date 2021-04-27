@@ -14,16 +14,17 @@ def createAccountSubmit():
     lastName = request.form['lastName']
     email = request.form['email']
     password = generate_password_hash(request.form['pass'], "sha256")
-    
-    insert_query = "insert into users values (:username, :firstName, :lastName, :password, :email)"
+    associatedSchool = request.form['school']    
+
+    insert_query = "insert into users values (:username, :firstName, :lastName, :password, :email, :associatedSchool)"
     insert_params = {
         "username": user,
         "firstName": firstName,
         "lastName": lastName,
         "password": password,
-        "email": email
-        
+        "email": email,
+        "associatedSchool": associatedSchool
         }
     result = dbInterface.commit(insert_query, insert_params)
-    return redirect("home/homePage.html")
+    return redirect("/events")
     
