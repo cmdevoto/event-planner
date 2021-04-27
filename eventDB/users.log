@@ -1,5 +1,6 @@
 
-SQL*Loader: Release 11.2.0.2.0 - Production on Sun Apr 25 19:52:40 2021
+SQL*Loader: Release 11.2.0.2.0 - Production on Mon Apr 26 01:47:51 2021
+
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
@@ -27,6 +28,7 @@ FIRSTNAME                            NEXT     *   ,  O(") CHARACTER
 LASTNAME                             NEXT     *   ,  O(") CHARACTER            
 PASSWORDHASH                         NEXT     *   ,  O(") CHARACTER            
 EMAIL                                NEXT     *   ,  O(") CHARACTER            
+ASSOCIATEDSCHOOL                     NEXT     *   ,  O(") CHARACTER            
 
 
 Table USERS:
@@ -36,7 +38,8 @@ Table USERS:
   0 Rows not loaded because all fields were null.
 
 
-Space allocated for bind array:                  82560 bytes(64 rows)
+Space allocated for bind array:                  99072 bytes(64 rows)
+
 Read   buffer bytes: 1048576
 
 Total logical records skipped:          0
@@ -44,8 +47,9 @@ Total logical records read:             3
 Total logical records rejected:         0
 Total logical records discarded:        0
 
-Run began on Sun Apr 25 19:52:40 2021
-Run ended on Sun Apr 25 19:52:40 2021
+Run began on Mon Apr 26 01:47:51 2021
+Run ended on Mon Apr 26 01:47:51 2021
+
 
 Elapsed time was:     00:00:00.03
 CPU time was:         00:00:00.00

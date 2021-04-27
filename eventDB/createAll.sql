@@ -1,3 +1,4 @@
+drop table eventGroups;
 drop table groupMembership;
 drop table eventPostings;
 drop table eventInvitations;
@@ -11,5 +12,6 @@ drop table users;
 @creates/createEventInvitations.sql
 @creates/createEventPostings.sql
 @creates/createGroupMembership.sql
+@creates/createEventGroups.sql
 
 Exit;

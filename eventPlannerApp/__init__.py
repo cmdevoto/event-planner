@@ -8,7 +8,7 @@ from flask_login import login_required, current_user, login_user, logout_user, L
 
 # App packages
 from . import config, dbInterface, User
-from .modules import auth, home
+from .modules import auth, home, events
 
 os.environ["LD_LIBRARY_PATH"] = "/u01/app/oracle/product/11.2.0/xe/lib"
 
@@ -38,5 +38,6 @@ def create_app():
         # Module blueprints
         application.register_blueprint(modules.auth.bp)
         application.register_blueprint(modules.home.bp)
+        application.register_blueprint(modules.events.bp)
 
     return application
