@@ -1,0 +1,81 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+<div class="container">
+  <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/events">My Upcoming Events</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="/createevent">Create Event</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/findevents">Find Events</a>
+  </li>
+  </ul>
+
+  <h1 class="text-secondary"> Create New Event! </h1>
+ 
+  <form>
+  <fieldset>
+    <div class="form-group">
+      <label for="eventDesc">Event Title</label>
+      <textarea class="form-control" id="eventDesc" rows="1"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="eventTime">Event Date and Time</label>
+      <input class="form-control" id="eventTime" aria-describedby="eventTime" placeholder="Enter date and time">
+      <small id="dateHelp" class="form-text text-muted"> Enter as MM-DD-YYYY 00:00:00</small>
+    </div>
+
+    <div class="form-group">
+      <label for="eventLocation">Location</label>
+      <input class="form-control" id="eventLocation" placeholder="Event Location">
+    </div>
+
+    <div class="form-group">
+      <label for="eventOwner">Owner Username</label>
+      <input class="form-control" id="eventOwner" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+      <label for="groupSelect">Select Associated Group(s)</label>
+      <select multiple="" class="form-control" id="groupSelect">
+          {% for item in data["groups"] %}
+            <option>{{ item[1] }}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="eventAccess">Event Access Type</label>
+      <select class="form-control" id="eventAccess">
+        <option>Public</option>
+        <option>Private</option>
+      </select>
+    </div>
+
+    <!--
+    <fieldset class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="publicRadios" id="publicRadios" value="public" checked="">
+          Public
+	</label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="privateRadios" id="privateRadios" value="private">
+        Private
+	</label>
+      </div>
+    </fieldset>
+    --!>
+
+    <button type="submit" class="btn btn-primary">Create Event!</button>
+  </fieldset>
+</form>
+ 
+</div>
+{% endblock %}
