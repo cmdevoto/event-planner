@@ -18,16 +18,22 @@ def loginSubmit():
     searchParams = {
         "email": email
         }
-    result = dbInterface.fetchOne(searchQuery, searchParams)[0]
-
-    if(check_password_hash(result, password)):
-        print("logged in")
-        user = User.User()
-        user.id = email
-        login_user(user)
-        return redirect("/test/databaseRetrieveItems")
+    result = dbInterface.fetchOne(searchQuery, searchParams)
+    if result:
+        if(check_password_hash(result[0], password)):
+            print("logged in")
+            user = User.User()
+            user.id = email
+            login_user(user)
+            return redirect("/test/databaseRetrieveItems")
+        else:
+            print("not logged in")
+            return redirect("/login")
     else:
         print("not logged in")
         return redirect("/login")
+
+
+    
 
     
