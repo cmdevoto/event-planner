@@ -25,7 +25,9 @@ def loginSubmit():
         user = User.User()
         user.id = email
         login_user(user)
+        return redirect("/test/databaseRetrieveItems")
     else:
         print("not logged in")
+        return redirect("/login")
 
-    return redirect("/test/databaseRetrieveItems")
+    
