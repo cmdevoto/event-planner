@@ -6,12 +6,12 @@ from flask_login import current_user, login_user, LoginManager, login_required
 
 @bp.route("/changePassword")
 @login_required
-def hello_route():
+def changePass():
     return render_template("auth/authChangePassword.html")
 
 
 @bp.route('/changePassword', methods=['POST'])
-def loginSubmit():
+def changePassSubmit():
     email = request.form['email']
     password = request.form['pass']
     username = request.form['username']    
