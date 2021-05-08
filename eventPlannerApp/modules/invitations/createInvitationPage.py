@@ -24,50 +24,73 @@ def createInvitationPageRoute():
 def createInvitationSubmit():
     
     event = request.form['eventSelect']
+    eventID = int(event[0])
+
     inviterUsername = current_user.get_id()
-    
+
+
+    ### NEED TO CHECK IF USER CAN INVITE PEOPLE ###
+    temp = dbInterface.fetchAll("select * from events where eventID = (:eventID)", {"eventID" : eventID})
+    print(temp)
+    accessType = temp[0][5]
+    owner = temp[0][4]
+    creator = temp[0][7]
+
+    print(accessType)
+    print(owner)
+    print(creator)
+
+    if accessType == "Private" and (owner != inviterUsername or creator != inviterUsername):
+        print("you don't have permissions to invite others to this event")    
+
+    ### FIGURE OUT THIS ALERT ###
+
+
     # list of people invited
     inviteeUsernames = request.form.getlist('userSelect')
     
     # list of groups invited
     groups = request.form.getlist('groupSelect')
+    groupID = []
+    for g in groups:
+        groupID.append(int(g[0]))
 
     message = request.form['message']
-    status = 'Pending'
 
     print(event, file=sys.stderr)
+    print(eventID, file=sys.stderr)
     print(inviterUsername, file=sys.stderr)
     print(inviteeUsernames, file=sys.stderr)
     print(groups, file=sys.stderr)
+    print(groupID, file=sys.stderr)
     print(message, file=sys.stderr)
-    print(status, file=sys.stderr)
-   
-    # must get event ID
-    eventID = 0
-    
-    # must get group ID
 
     # make list of all people invited , only send one invitation to each person
-   
-    # select * from groupMembership where groupID = <groupID>
-    # resultingUsersGroups = dbInterface.fetchAll("select * from groupMembership where groupID = (:groupID)", {"groupID" : groupID})
-    # for entry in resultingUsersGroups:
-        # if entry in inviteeUsernames:
-            # continue
-        #else:
-            #inviteeUsernames.append(entry[0])
 
-
-    inviteInsertQuery = "insert into eventInvitations (eventID, inviterUsername, inviteeUsername, invitationMessage, status) values (:eventID, :inviterUsername, :inviteeUsername, :invitationMessage, :status)"
+    if inviteeUsernames:
+        inviteSet = set(inviteeUsernames)
+    else:
+        inviteSet = set()   
     
-    inviteInsertParams = {
+    for gid in groupID:
+        tempQuery = dbInterface.fetchAll("select * from groupMembership where groupID = (:groupID)", {"groupID" : gid})
+        print(tempQuery)
+        for t in tempQuery:
+            inviteSet.add(t[0])
+    print(inviteSet)
+
+    # loop to make invitations (insert into eventInvitations)
+    for i in inviteSet:
+        inviteInsertQuery =  "insert into eventInvitations (eventID, inviterUsername, inviteeUsername, invitationMessage, status) values (:eventID, :inviterUsername, :inviteeUsername, :invitationMessage, :status)"
+    
+        inviteInsertParams = {
         "eventID": eventID,
         "inviterUsername": inviterUsername,
-        "inviteeUsername": inviteeUsername,
+        "inviteeUsername": i,
         "invitationMessage": message,
         "status": "Pending"
-    }
+        }
     
-    result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
+        result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
 
     return redirect("/invitations")
