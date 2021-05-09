@@ -11,26 +11,27 @@ def changePass():
 
 
 @bp.route('/changePassword', methods=['POST'])
+@login_required
 def changePassSubmit():
-    email = request.form['email']
+    user = current_user.get_id()
     password1 = request.form['pass1']
     password2 = request.form['pass2']    
 
     if(password1 == password2):
         passwordNew = generate_password_hash(password1, "sha256")
-        updateQuery = "update users set PASSWORDHASH = :pass where email = :email"
+        updateQuery = "update users set PASSWORDHASH = :pass where user = :user"
         
         updateParams = {
-            "email": email,
+            "user": user,
             "pass": passwordNew
         }
 
         result = dbInterface.commit(updateQuery, updateParams)
-        flash("Please Log In Again")
+        print("Please Log In Again")
         logout_user()
         return redirect("/login")
     else:
-        flash("Passwords must match")
+        print("Passwords must match")
         return redirect("/changePassword")
 
     
