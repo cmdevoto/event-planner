@@ -6,3 +6,4 @@ from . import authLoginPage
 from . import authCreateAccountPage
 from . import authChangePasswordPage
 from . import authLogout
+from . import authEditAccountPage
