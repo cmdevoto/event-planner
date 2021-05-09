@@ -8,7 +8,7 @@ from flask_login import current_user, login_user, LoginManager, login_required, 
 @login_required
 def logout():
     logout_user()
-    return redirect("auth/authLoginPage.html")
+    return redirect("/login")
 
 
 
