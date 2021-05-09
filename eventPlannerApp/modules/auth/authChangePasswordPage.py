@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, flash
 from werkzeug.security import check_password_hash
 from . import bp
 from ... import dbInterface, User
@@ -13,25 +13,22 @@ def changePass():
 @bp.route('/changePassword', methods=['POST'])
 def changePassSubmit():
     email = request.form['email']
-    password = request.form['pass']
-    username = request.form['username']    
+    password1 = request.form['pass1']
+    password2 = request.form['pass2']    
 
-    searchQuery = "select PASSWORDHASH from users where username = :username"
-    searchParams = {
-        "username": username
+    if(password1 == password2):
+        password = generate_password_hash(request.form['pass'], "sha256")
+        updateQuery = "update users set PASSWORDHASH = :pass where email = :email"
+        
+        updateParams = {
+            "email": email,
+            "pass": password
         }
 
-    result = dbInterface.fetchOne(searchQuery, searchParams)
-    if result:
-        if(check_password_hash(result[0], password)):
-            print("logged in")
-            user = User.User()
-            user.id = email
-            login_user(user)
-            return redirect("/test/databaseRetrieveItems")
-        else:
-            print("not logged in")
-            return redirect("/login")
+        result = dbInterface.commit(updateQuery, updateParams)
+        return redirect("/events")
     else:
-        print("not logged in")
-        return redirect("/login")
+        flash("Passwords must match")
+        return redirect("/changePassword")
+
+    
