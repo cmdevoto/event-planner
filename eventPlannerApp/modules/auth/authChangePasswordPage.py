@@ -20,7 +20,7 @@ def changePassSubmit():
 
     if(password1 == password2):
         passwordNew = generate_password_hash(password1, "sha256")
-        updateQuery = "update users set PASSWORDHASH = :pass where EMAIL = :user"
+        updateQuery = "update users set PASSWORDHASH = :pass where email = :user"
         
         updateParams = {
             "user": user,
