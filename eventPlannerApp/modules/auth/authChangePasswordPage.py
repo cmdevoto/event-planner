@@ -17,12 +17,12 @@ def changePassSubmit():
     password2 = request.form['pass2']    
 
     if(password1 == password2):
-        password = generate_password_hash(request.form['pass'], "sha256")
+        passwordNew = generate_password_hash(password1, "sha256")
         updateQuery = "update users set PASSWORDHASH = :pass where email = :email"
         
         updateParams = {
             "email": email,
-            "pass": password
+            "pass": passwordNew
         }
 
         result = dbInterface.commit(updateQuery, updateParams)
