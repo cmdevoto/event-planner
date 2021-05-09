@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, flash
 from werkzeug.security import check_password_hash
 from . import bp
 from ... import dbInterface, User
-from flask_login import current_user, login_user, LoginManager, login_required
+from flask_login import current_user, login_user, LoginManager, login_required, logout_user
 
 @bp.route("/changePassword")
 @login_required
@@ -26,7 +26,9 @@ def changePassSubmit():
         }
 
         result = dbInterface.commit(updateQuery, updateParams)
-        return redirect("/events")
+        flash("Please Log In Again")
+        logout_user()
+        return redirect("/login")
     else:
         flash("Passwords must match")
         return redirect("/changePassword")
