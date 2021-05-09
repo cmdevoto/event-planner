@@ -14,7 +14,7 @@ def changePass():
 @login_required
 def changePassSubmit():
     email = current_user.get_id()
-    print(user)
+    print(email)
     password1 = request.form['pass1']
     password2 = request.form['pass2']    
 
