@@ -13,17 +13,17 @@ def changePass():
 @bp.route('/changePassword', methods=['POST'])
 @login_required
 def changePassSubmit():
-    user = current_user.get_id()
+    email = current_user.get_id()
     print(user)
     password1 = request.form['pass1']
     password2 = request.form['pass2']    
 
     if(password1 == password2):
         passwordNew = generate_password_hash(password1, "sha256")
-        updateQuery = "update users set PASSWORDHASH = :pass where email = :user"
+        updateQuery = "update users set PASSWORDHASH = :pass where email = :email"
         
         updateParams = {
-            "user": user,
+            "email": email,
             "pass": passwordNew
         }
 
