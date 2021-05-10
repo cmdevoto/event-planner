@@ -23,7 +23,7 @@
       <label for="groupSelect">Select Event</label>
       <select class="form-control" name="eventSelect" id="eventSelect">
           {% for item in data["events"] %}
-            <option>{{ item [0] }} : {{ item[1] }}</option>
+            <option>{{ item [0] }}: {{ item[1] }}</option>
           {% endfor %}
       </select>
     </div>
@@ -32,7 +32,7 @@
       <label for="groupSelect">Select Group(s) to Invite</label>
       <select multiple="multiple" class="form-control" name="groupSelect" id="groupSelect">
           {% for item in data["groups"] %}
-            <option>{{ item [0] }} : {{ item[1] }} </option>
+            <option>{{ item [0] }}: {{ item[1] }} </option>
           {% endfor %}
       </select>
     </div>

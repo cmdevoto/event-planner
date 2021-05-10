@@ -1,0 +1,45 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+
+<div class="container">
+  <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/invitations">My Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="/sentinvitations">View Sent Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/createinvitation">Send Event Invitation</a>
+  </li>
+  </ul>
+  
+  <div class="jumbotron">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Event ID</th>
+            <th scope="col">Inviter Username</th>
+            <th scope="col">Invitee Username</th>
+            <th scope="col">Invitation Message</th>
+	  </tr>
+        </thead>
+        <tbody>
+          {% for item in data["invitations"] %}
+          <tr class="table-success">
+            <th scope="row">{{item[0]}}</th>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+	    <td>
+	      <form method="POST" class="form-inline my-2 my-lg-0">
+      		<button class="btn btn-secondary btn-sm" type="submit">Rescind</button>
+              </form>
+	    </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </div>
+</div>
+{% endblock %}

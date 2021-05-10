@@ -1,15 +1,15 @@
 from flask import redirect, render_template
+from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin
 
 from . import bp
 from ... import dbInterface
 
 @bp.route("/invitations")
 def invitationHomePageRoute():
-    # will have to something along the lines of:
-    # select * from invitations where user_id = <user> and status = "Pending"
 
-    resultingInvitations = dbInterface.fetchAll("select * from eventInvitations", {})
+    resultingInvites = dbInterface.fetchAll("select * from eventInvitations where inviteeUsername = (:iid) and status = 'Pending'", {"iid" : current_user.get_id()})
+ 
     data = {
-        "invitations": resultingInvitations
+        "invitations": resultingInvites
     }
     return render_template("invitations/invitationHome.html", data=data)

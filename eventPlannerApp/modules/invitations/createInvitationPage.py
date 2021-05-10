@@ -24,7 +24,8 @@ def createInvitationPageRoute():
 def createInvitationSubmit():
     
     event = request.form['eventSelect']
-    eventID = int(event[0])
+    #print(event.split(':')[0])
+    eventID = int(event.split(':')[0])
 
     inviterUsername = current_user.get_id()
 
@@ -53,7 +54,8 @@ def createInvitationSubmit():
     groups = request.form.getlist('groupSelect')
     groupID = []
     for g in groups:
-        groupID.append(int(g[0]))
+        groupID.append(int(g.split(':')[0]))
+        #groupID.append(int(g[0]))
 
     message = request.form['message']
 
