@@ -15,7 +15,14 @@
             Public Event
           {% endif %}
         </h5>
-        <div id="map"></div>
+        <iframe
+          width="600"
+          height="450"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4Y&q={{ data["event"][3] }}">
+        </iframe>
         
       </div>
       
