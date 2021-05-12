@@ -19,12 +19,14 @@ def single_event_view_page(eventId):
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
     eventDateTime = eventFromDb[2]
-    dateTimeString = "{} {} {}, {} ".format(
-      eventDateTime.strftime("%I:%M %P"), 
+    dateTimeString = "{}, {} {}, {} {} ".format(
+      eventDateTime.strftime("%A"),
       calendar.month_name[eventDateTime.month], 
       eventDateTime.day, 
-      eventDateTime.year
+      eventDateTime.year,
+      eventDateTime.strftime("%I:%M %p")
     )
+    #dateTimeString = eventDateTime.strftime("%A %B, %d  %I %P")
 
     event = {
       "name": eventFromDb[1],
