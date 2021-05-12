@@ -15,24 +15,24 @@
             Public Event
           {% endif %}
         </h5>
-        <iframe
-          width="600"
-          height="450"
-          style="border:0"
-          loading="lazy"
-          allowfullscreen
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4&q={{ data["event"][3] }}">
-        </iframe>
-        
+        <div id="googleMap">
+          <iframe
+            width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4&q={{ data["event"][3] }}">
+          </iframe>
+        </div>
       </div>
-      
     </div>
   </div>
   {% if data["eventId"] %}
     <h3>Looking for eventId: {{ data["eventId"] }}</h3>
   {% endif %}
 </div>
-<script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4Y&callback=initMap">
-</script>
+
+<style>
+#googleMap {
+  align-items: center;
+}
+</style>
+
 {% endblock %}
