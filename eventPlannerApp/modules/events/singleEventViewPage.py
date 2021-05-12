@@ -14,7 +14,7 @@ def single_event_view_page(eventId):
 
     eventQuery = "select * from events where eventId=:eventId"
     eventQueryParams = {
-      "eventId": 1
+      "eventId": eventId
     }
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
