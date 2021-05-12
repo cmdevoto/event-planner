@@ -4,8 +4,8 @@
 <div class="container">
   <div class="jumbotron">
     <h1>{{ data["event"]["name"] }}</h1>
-    <div class="row" justify="center">
-      <div class="card mb-9">
+    <div class="row" justify="center" id="cardRow">
+      <div class="card mb-9" id="mainCard">
         <div class="card-body">
           
           <h4 class="card-subtitle">{{ data["event"]["timeDate"] }} </h4>
@@ -46,17 +46,18 @@
 </div>
 
 <style>
-  #googleMap {
-    display: block;
-    align-content: center;
-    align-items: center;
+
+  #cardRow {
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
-  iframe {
+  #mainCard {
     display: block;
   }
 
   #additionalInfoCard {
+    display: block;
     margin-left: 1em;
   }
 </style>
