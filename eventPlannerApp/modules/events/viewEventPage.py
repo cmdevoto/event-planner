@@ -55,4 +55,4 @@ def single_event_view_page(eventId):
       "eventId": eventId,
       "event": event
     }
-    return render_template("events/singleEventView.html", data=data)
+    return render_template("events/viewEvent.html", data=data)
