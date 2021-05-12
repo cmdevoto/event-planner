@@ -37,16 +37,16 @@
             <td>{{ item[2] }}</td>
             <td>{{ item[3] }}</td>
             <td>{{ item[4] }}</td>
-	    <td>{{ item[5] }}</td>
-	    <td>{{ item[6] }}</td>
-	    <td>{{ item[7] }}</td>
-	    <td>{{ item[8] }}</td>
-	    <td>{{ item[9] }}</td>
-	    <td>
-	      <form class="form-inline my-2 my-lg-0">
-      		<button class="btn btn-secondary btn-sm" type="submit">View Page</button>
+            <td>{{ item[5] }}</td>
+            <td>{{ item[6] }}</td>
+            <td>{{ item[7] }}</td>
+            <td>{{ item[8] }}</td>
+            <td>{{ item[9] }}</td>
+            <td>
+              <form class="form-inline my-2 my-lg-0" method="get" action="/event/{{- item[0] -}}">
+                <button class="btn btn-secondary btn-sm" type="submit">View Page</button>
               </form>
-	    </td>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
