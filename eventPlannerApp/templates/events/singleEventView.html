@@ -32,11 +32,11 @@
           </h5>
           <hr/>
           <h5 class="card-text">Organized By:</h5> 
-          <h5 class="card-text"> {{ data["event"]["ownerUsername"] }} </h5>
+          <h5 class="card-text"> {{ data["event"]["ownerName"] }} </h5>
           {% if data["event"]["ownerUsername"] != data["event"]["creatorUsername"] %}
             <hr/>
             <h5 class="card-text">Created By:</h5> 
-            <h5 class="card-text"> {{ data["event"]["creatorUsername"] }} </h5>
+            <h5 class="card-text"> {{ data["event"]["creatorName"] }} </h5>
           {% endif %}
         </div>
       </div>
