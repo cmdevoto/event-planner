@@ -29,15 +29,15 @@ def single_event_view_page(eventId):
     print("Raw Event: {}".format(eventFromDb))
     print("Event: {}".format(event))
 
-    ownerQuery = "select firstname, lastname from users where username = :organizerUsername"
-    ownerQueryParams = { "username": eventFromDb[4]}
+    ownerQuery = "select firstname, lastname from users where username = :ownerUsername"
+    ownerQueryParams = { "ownerUsername": eventFromDb[4] }
     owner = dbInterface.fetchOne(ownerQuery, ownerQueryParams)
     event["ownerName"] = "{} {}".format(owner[0], owner[1])
     print("Raw Owner: {}".format(owner))
     
     if(event["ownerUsername"] != event["creatorUsername"]):
         creatorQuery = "select firstname, lastname from users where username = :creatorUsername"
-        creatorQueryParams = { "username": eventFromDb[4]}
+        creatorQueryParams = { "creatorUsername": eventFromDb[7] }
         creator = dbInterface.fetchOne(creatorQuery, creatorQueryParams)
         event["creatorName"] = "{} {}".format(creator[0], creator[1])
         print("Raw Creator: {}".format(owner))
