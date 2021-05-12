@@ -15,7 +15,7 @@
           <br />
           <div id="googleMap">
             <iframe
-              style="border:0" loading="lazy" allowfullscreen
+              id="googleMap" style="border:0" loading="lazy" allowfullscreen
               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4&q={{ data["event"]["location"] }}">
             </iframe>
           </div>
@@ -62,6 +62,11 @@
   #additionalInfoCard {
     margin-top: 1em;
     display: block;
+  }
+
+  #googleMap {
+    min-width: 450;
+    min-height: 600;
   }
 </style>
 
