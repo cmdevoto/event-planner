@@ -8,7 +8,13 @@
     <div class="card mb-12">
       <div class="card-body">
         <h3 class="card-title">{{ data["event"][1] }}</h3>
-        <h5 class="card-subtitle">{{ data["event"][2] }}</h5>
+        <h5 class="card-subtitle">
+          {% if data["event"][5] == "private" %}
+            Private Event 
+          {% elif data["event"][5] == "public" %}
+            Public Event
+          {% endif %}
+        </h5>
       </div>
       
     </div>

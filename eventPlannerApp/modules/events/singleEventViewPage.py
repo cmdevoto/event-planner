@@ -8,6 +8,7 @@ from ... import dbInterface
 @bp.route("/event/<int:eventId>")
 def single_event_view_page(eventId):
     event = dbInterface.fetchOne("select * from events", {})
+    print("Event Page: {}".format(event))
     data = {
       "eventId": eventId,
       "event": event
