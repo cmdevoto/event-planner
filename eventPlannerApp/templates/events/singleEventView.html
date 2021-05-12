@@ -31,9 +31,11 @@
               Public Event
             {% endif %}
           </h5>
-          <p class="card-text">Organized By: </p>
+          <hr/>
+          <h5 class="card-text">Organized By: {{ data["event"]["ownerUsername"] }}</h5>
           {% if data["event"]["ownerUsername"] != data["event"]["creatorUsername"] %}
-            <p class="card-text">Created By: </p>
+            <hr/>
+            <h5 class="card-text">Created By: </h5>
           {% endif %}
         </div>
       </div>
