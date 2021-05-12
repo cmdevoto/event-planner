@@ -2,14 +2,19 @@
 
 {% block pageContent %}
 <div class="container">
-  {% if data["postId"] %}
-    <h3>Looking for postId: {{ data["postId"] }}</h3>
-  {% endif %}
+
 
   <div class="jumbotron">
     <div class="card mb-12">
-      <h3 class="card-title">{{ data["event"][0] }}</h3>
+      <div class="card-body">
+        <h3 class="card-title">{{ data["event"][1] }}</h3>
+        <h5 class="card-subtitle">{{ data["event"][2] }}</h5>
+      </div>
+      
     </div>
   </div>
+  {% if data["eventId"] %}
+    <h3>Looking for eventId: {{ data["eventId"] }}</h3>
+  {% endif %}
 </div>
 {% endblock %}
