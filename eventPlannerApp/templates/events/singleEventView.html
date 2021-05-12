@@ -8,12 +8,15 @@
       <div class="card mb-9" id="mainCard">
         <div class="card-body">
           <h4 class="card-subtitle">{{ data["event"]["date"] }} </h4>
-          <hr />
           <h4 class="card-subtitle">{{ data["event"]["time"] }} </h4>
           <hr/>
           <h4 class="card-text">{{ data["event"]["location"] }}</h4>
-          <hr />
-          
+          <div id="googleMap">
+            <iframe
+              width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4&q={{ data["event"]["location"] }}">
+            </iframe>
+          </div>
           
         </div>
       </div>
