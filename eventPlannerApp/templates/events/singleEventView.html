@@ -19,8 +19,7 @@
           
         </div>
       </div>
-      <div class="mb-1"></div>
-      <div class="card mb-2">
+      <div class="card mb-2" id="additionalInfoCard">
         <div class="card-body">
           <h5 class="card-title">{{ data["event"]["associatedSchool"] }}</h5>
           <hr/>
@@ -32,10 +31,12 @@
             {% endif %}
           </h5>
           <hr/>
-          <h5 class="card-text">Organized By: {{ data["event"]["ownerUsername"] }}</h5>
+          <h5 class="card-text">Organized By:</h5> 
+          <h5 class="card-text"> {{ data["event"]["ownerUsername"] }} </h5>
           {% if data["event"]["ownerUsername"] != data["event"]["creatorUsername"] %}
             <hr/>
-            <h5 class="card-text">Created By: </h5>
+            <h5 class="card-text">Created By:</h5> 
+            <h5 class="card-text"> {{ data["event"]["creatorUsername"] }} </h5>
           {% endif %}
         </div>
       </div>
@@ -55,6 +56,10 @@
 
   iframe {
     display: block;
+  }
+
+  #additionalInfoCard {
+    margin-left: 1em;
   }
 </style>
 
