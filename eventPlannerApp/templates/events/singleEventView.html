@@ -32,7 +32,7 @@
             {% endif %}
           </h5>
           <p class="card-text">Organized By: </p>
-          {% if event["data"]["ownerUsername"] != event["data"]["creatorUsername"] %}
+          {% if data["event"]["ownerUsername"] != data["event"]["creatorUsername"] %}
             <p class="card-text">Created By: </p>
           {% endif %}
         </div>
