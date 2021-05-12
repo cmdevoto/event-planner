@@ -1,21 +1,34 @@
 from flask import redirect, render_template
 from flask_login import login_required
 
+import calendar
+
 from . import bp
 from ... import dbInterface
 
 @login_required
 @bp.route("/event/<int:eventId>")
 def single_event_view_page(eventId):
+
+  # ToDo: Access Checks. Redirect if it doesn't exist
+
     eventQuery = "select * from events where eventId=:eventId"
     eventQueryParams = {
       "eventId": 1
     }
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
+    eventDateTime = eventFromDb[2]
+    dateTimeString = "{} {} {}, {} ".format(
+      eventDateTime.strftime("%I:%M %P"), 
+      calendar.month_name[eventDateTime.month], 
+      eventDateTime.day, 
+      eventDateTime.year
+    )
+
     event = {
       "name": eventFromDb[1],
-      "timeDate": eventFromDb[2].strftime("%H:%M:%S, %m/%d/%Y"),
+      "timeDate": dateTimeString,
       "location": eventFromDb[3],
       "ownerUsername": eventFromDb[4],
       "ownerName": "",
