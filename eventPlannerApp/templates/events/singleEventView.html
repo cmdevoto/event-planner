@@ -1,0 +1,9 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+<div class="container">
+  { if data["postId"] }
+    <h3>Looking for postId: {{ data["postId"] }}</h3>
+  {% endif %}
+</div>
+{% endblock %}

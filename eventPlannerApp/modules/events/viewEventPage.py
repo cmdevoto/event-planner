@@ -7,4 +7,7 @@ from ... import dbInterface
 @login_required
 @bp.route("/event/<int:postId>")
 def single_event_view_page(postId):
-    return 'Looking for postId: {}'.format(postId)
+    data = {
+      "postId": postId
+    }
+    return render_template("events/singleEventView.html", data=data)
