@@ -8,6 +8,7 @@
         <div class="card-body">
           <h2 class="card-title">{{ data["event"]["name"] }}</h2>
           <h4 class="card-subtitle">{{ data["event"]["timeDate"] }} </h4>
+          <hr/>
           <div id="googleMap">
             <iframe
               width="600" height="450" style="border:0" loading="lazy" allowfullscreen
@@ -17,16 +18,16 @@
           
         </div>
       </div>
-      <div class="card mb-3">
+      <div class="card mb-2">
         <div class="card-body">
-          <h3 class="card-title">{{ data["event"]["associatedSchool"] }}</h3>
-          <h4 class="card-subtitle">
+          <h5 class="card-title">{{ data["event"]["associatedSchool"] }}</h5>
+          <h5 class="card-subtitle">
             {% if data["event"]["accessType"] == "private" %}
               Private Event 
             {% elif data["event"]["accessType"] == "public" %}
               Public Event
             {% endif %}
-          </h4>
+          </h5>
         </div>
       </div>
     </div>
