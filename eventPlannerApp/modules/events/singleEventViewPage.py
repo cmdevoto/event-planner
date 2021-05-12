@@ -7,7 +7,16 @@ from ... import dbInterface
 @login_required
 @bp.route("/event/<int:eventId>")
 def single_event_view_page(eventId):
-    event = dbInterface.fetchOne("select * from events", {})
+    eventFromDb = dbInterface.fetchOne("select * from events", {})
+    event = {
+      "name": eventFromDb[1],
+      "time": eventFromDb[2],
+      "location": eventFromDb[3],
+      "ownerUsername": eventFromDb[4],
+      "accessType": eventFromDb[5],
+      "associatedSchool": eventFromDb[6],
+      "creatorUsername": eventFromDb[7]
+    }
     print("Event Page: {}".format(event))
     data = {
       "eventId": eventId,

@@ -2,23 +2,21 @@
 
 {% block pageContent %}
 <div class="container">
-
-
   <div class="jumbotron">
     <div class="card mb-12">
       <div class="card-body">
-        <h3 class="card-title">{{ data["event"][1] }}</h3>
+        <h3 class="card-title">{{ data["event"]["title"] }}</h3>
         <h5 class="card-subtitle">
-          {% if data["event"][5] == "private" %}
+          {% if data["event"]["accessType"] == "private" %}
             Private Event 
-          {% elif data["event"][5] == "public" %}
+          {% elif data["event"]["accessType"] == "public" %}
             Public Event
           {% endif %}
         </h5>
         <div id="googleMap">
           <iframe
             width="600" height="450" style="border:0" loading="lazy" allowfullscreen
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4&q={{ data["event"][3] }}">
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4&q={{ data["event"]["location"] }}">
           </iframe>
         </div>
       </div>
