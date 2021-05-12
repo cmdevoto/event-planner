@@ -8,6 +8,7 @@ from ... import dbInterface
 @bp.route("/event/<int:postId>")
 def single_event_view_page(postId):
     data = {
-      "postId": postId
+      "postId": postId,
+      "event": ["CS Party"]
     }
     return render_template("events/singleEventView.html", data=data)

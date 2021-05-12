@@ -5,4 +5,4 @@ bp = Blueprint('event', __name__)
 from . import eventHomePage
 from . import createEventPage
 from . import findEventsPage
-from . import viewEventPage
+from . import singleEventViewPage
