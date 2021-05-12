@@ -10,7 +10,7 @@ def single_event_view_page(eventId):
     eventFromDb = dbInterface.fetchOne("select * from events", {})
     event = {
       "name": eventFromDb[1],
-      "time": eventFromDb[2],
+      "timeDate": eventFromDb[2].strftime("%H:%M:%S, %m/%d/%Y"),
       "location": eventFromDb[3],
       "ownerUsername": eventFromDb[4],
       "accessType": eventFromDb[5],
