@@ -7,7 +7,9 @@
   {% endif %}
 
   <div class="jumbotron">
-    <h3> {{ data["event"][0] }}</h3>
+    <div class="card mb-12">
+      <h3 class="card-title">{{ data["event"][0] }}</h3>
+    </div>
   </div>
 </div>
 {% endblock %}
