@@ -6,13 +6,13 @@
       {{ form.csrf_token }}
       <fieldset>
         <label class="form-label mt-4" for="descriptionInput"> {{- form.description.label -}}: </label>
-        {{ form.description(class="form-control", id="descriptionInput", value=data['event']['name']) }}
+        {{ form.description(class="form-control", id="descriptionInput") }}
       </fieldset>
       <div class="row">
         <div class="col">
           <fieldset>
             <label class="form-label mt-3" for="dayInput"> {{- form.day.label -}}: </label>
-            {{ form.day(class="form-control", id="dayInput", value=data['event']['day']) }}
+            {{ form.day(class="form-control", id="dayInput") }}
           </fieldset>
         </div>
         <div class="col">
@@ -24,7 +24,7 @@
         <div class="col">
           <fieldset>
             <label class="form-label mt-3" for="yearInput"> {{- form.year.label -}}: </label>
-            {{ form.year(class="form-control", id="yearInput", value=data['event']['year']) }}
+            {{ form.year(class="form-control", id="yearInput") }}
           </fieldset>
         </div>
       </div>
@@ -32,13 +32,13 @@
         <div class="col">
           <fieldset>
             <label class="form-label mt-3" for="hourInput"> {{- form.hour.label -}}: </label>
-            {{ form.day(class="form-control", id="hourInput", value=data['event']['hour']) }}
+            {{ form.day(class="form-control", id="hourInput"]) }}
           </fieldset>
         </div>
         <div class="col">
           <fieldset>
             <label class="form-label mt-3" for="minuteInput"> {{- form.minute.label -}}: </label>
-            {{ form.minute(class="form-control", id="minuteInput", value=data['event']['minute']) }}
+            {{ form.minute(class="form-control", id="minuteInput") }}
           </fieldset>
         </div>
         <div class="col">
@@ -50,7 +50,7 @@
       </div>
       <fieldset>
         <label class="form-label mt-4" for="locationInput"> {{- form.location.label -}}: </label>
-        {{ form.location(class="form-control", id="locationInput", value=data['event']['location']) }}
+        {{ form.location(class="form-control", id="locationInput") }}
       </fieldset>
       <fieldset>
         <label class="form-label mt-4" for="accessTypeInput"> {{- form.accessType.label -}}: </label>
@@ -58,11 +58,11 @@
       </fieldset>
       <fieldset>
         <label class="form-label mt-4" for="ownerInput"> {{- form.ownerUsername.label -}}: </label>
-        {{ form.ownerUsername(class="form-control", id="ownerInput", value=data['event']['ownerUsername'], readonly=true) }}
+        {{ form.ownerUsername(class="form-control", id="ownerInput", readonly=true) }}
       </fieldset>
       <fieldset>
         <label class="form-label mt-4" for="creatorInput"> {{- form.creatorUsername.label -}}: </label>
-        {{ form.creatorUsername(class="form-control", id="creatorInput", value=data['event']['creatorUsername'], readonly=true) }}
+        {{ form.creatorUsername(class="form-control", id="creatorInput", readonly=true) }}
       </fieldset>
     </form>
   </div>
