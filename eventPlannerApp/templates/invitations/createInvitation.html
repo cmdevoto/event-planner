@@ -2,6 +2,18 @@
 
 {% block pageContent %}
 <div class="container">
+
+  {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>{{ message }}</strong>
+            </div>
+          {% endfor %}
+       {% endif %}
+  {% endwith %}
+
   <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="/invitations">My Invitations</a>

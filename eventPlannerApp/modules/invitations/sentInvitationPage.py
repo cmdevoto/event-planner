@@ -46,6 +46,6 @@ def rescindInvitationSubmit():
         "inviteeUsername":inviteeUsername
     }
     result = dbInterface.commit(deleteQuery, queryParams)
-    flash('You successfully rescinded this invitation')
+    flash('You successfully rescinded this invitation.')
     print(result)
     return redirect("/sentinvitations")

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, flash
 from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin
 
 from . import bp
@@ -31,6 +31,7 @@ def createInvitationSubmit():
 
 
     ### NEED TO CHECK IF USER CAN INVITE PEOPLE ###
+    print("CREATE INVITE . PY")
     temp = dbInterface.fetchAll("select * from events where eventID = (:eventID)", {"eventID" : eventID})
     print(temp)
     accessType = temp[0][5]
@@ -41,10 +42,10 @@ def createInvitationSubmit():
     print(owner)
     print(creator)
 
-    if accessType == "Private" and (owner != inviterUsername or creator != inviterUsername):
+    if accessType == "Private" or accessType == "private" and (owner != inviterUsername or creator != inviterUsername):
         print("you don't have permissions to invite others to this event")    
-
-    ### FIGURE OUT THIS ALERT ###
+        flash("You do not have permission to invite others to this event.")
+        return redirect("/createinvitation")
 
 
     # list of people invited
