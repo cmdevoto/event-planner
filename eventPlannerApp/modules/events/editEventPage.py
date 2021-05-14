@@ -1,7 +1,7 @@
 from flask import render_template
 
 from flask_wtf import FlaskForm
-from wtforms import DateField, StringField, SelectField
+from wtforms import DateField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired
 
 import calendar
