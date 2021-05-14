@@ -56,7 +56,9 @@
       <!-- Column for Event Postings -->
       <div class="col">
         {% for eventPost in data['eventPostings'] %}
+        <div class="row">
           <p>{{ eventPost[3] }}</p>
+        </div>
         {% endfor %}
       </div>
     </div>
