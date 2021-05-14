@@ -63,8 +63,8 @@ def event_edit_page(eventId):
     form.location.data = event['location']
     form.ownerUsername.data = event['ownerUsername']
     form.accessType.data = event['accessType']
-    form.associatedSchool = event['associatedSchool']
-    form.creatorUsername = event['creatorUsername']
+    form.associatedSchool.data = event['associatedSchool']
+    form.creatorUsername.data = event['creatorUsername']
 
     print("Month Num: {}".format(eventDateTime.month))
 
