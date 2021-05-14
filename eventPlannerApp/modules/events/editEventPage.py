@@ -73,7 +73,7 @@ def editEventPageRoute(eventId):
             year=int(form.year.data), 
             month=int(form.month.data),
             day=int(form.day.data),
-            hour=int(form.hour.data) if form.amPm == 'AM' else int(form.hour.data) + 12,
+            hour=int(form.hour.data) if form.amPm == 'PM' else int(form.hour.data) + 12,
             minute=int(form.minute.data),
             ),
           'location': form.location.data,
