@@ -68,6 +68,9 @@ def event_edit_page(eventId):
 
     print("Month Num: {}".format(eventDateTime.month))
 
+    if form.validate_on_submit():
+      print("Form Submitted")
+
     return render_template('events/editEvent.html', form=form, data=data)
 
 
