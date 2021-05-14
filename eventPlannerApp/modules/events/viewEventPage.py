@@ -8,7 +8,7 @@ from ... import dbInterface
 
 @login_required
 @bp.route("/event/<int:eventId>")
-def single_event_view_page(eventId):
+def viewEventPageRoute(eventId):
 
   # ToDo: Access Checks. Redirect if it doesn't exist
 
