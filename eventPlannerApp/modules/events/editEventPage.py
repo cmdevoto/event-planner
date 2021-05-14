@@ -66,7 +66,7 @@ def event_edit_page(eventId):
 
 
 class EditEventForm(FlaskForm):
-    description = StringField('Description', validators=[DataRequired()])
+    description = StringField('Name', validators=[DataRequired()])
     day = IntegerField('Day', validators=[DataRequired()])
     month = SelectField('Month',
         choices=[(1, calendar.month_name[1]), (2, calendar.month_name[2]), (3, calendar.month_name[3]), 
