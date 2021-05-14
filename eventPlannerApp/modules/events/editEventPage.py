@@ -69,7 +69,9 @@ class EditEventForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired()])
     day = IntegerField('Day', validators=[DataRequired()])
     month = SelectField('Month',
-        choices=[],
+        choices=[(1, calendar.month[1]), (2, calendar.month[2]), (3, calendar.month[3]), (4, calendar.month[4]), 
+                  (5, calendar.month[5]), (6, calendar.month[6]), (7, calendar.month[7]),(8, calendar.month[8]), 
+                  (9, calendar.month[9]), (10, calendar.month[10]), (11, calendar.month[11]), (12, calendar.month[12])],
         validators=[DataRequired()]
         )
     year = IntegerField('Year', validators=[DataRequired()])
