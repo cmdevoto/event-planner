@@ -55,13 +55,20 @@
     <div class="row" justify="center" id="cardRow">
       <!-- Column for Event Postings -->
       <div class="col">
-        <h4>Posts</h4>
-        {% for eventPost in data['eventPostings'] %}
-        <div class="row">
-          <p>{{ eventPost[3] }}</p>
+        <div class="card mb-2" id="additionalInfoCard">
+          <div class="card-body">
+            <h5 class="card-title">Posts</h5>
+            {% for eventPostIndex, eventPost in enumerate(data['eventPostings']) %}
+              {% if eventPostIndex != 1 %}
+              <hr />
+              {% endif %}
+              <p class="card-text">{{ eventPost[3] }}</p>
+            {% endfor %}
+          </div>
         </div>
-        {% endfor %}
       </div>
+
+      <!-- Column  -->
     </div>
   </div>
 </div>
