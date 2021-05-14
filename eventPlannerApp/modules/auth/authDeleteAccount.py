@@ -33,6 +33,7 @@ def deleteAccountSubmit():
 
             result = dbInterface.commit(deleteQuery, deleteParams)
             print("deletion successful")
+            flash("deletion successful")
             logout_user()
             return redirect("/login")
         else:
