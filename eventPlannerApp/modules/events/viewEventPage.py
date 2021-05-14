@@ -50,9 +50,15 @@ def viewEventPageRoute(eventId):
         creatorQueryParams = { "creatorUsername": eventFromDb[7] }
         creator = dbInterface.fetchOne(creatorQuery, creatorQueryParams)
         event["creatorName"] = "{} {}".format(creator[0], creator[1])
+
+    eventPostingsQuery = "select * from eventPostings where eventId = :eventId"
+    eventPostingsQueryArgs = {
+        'eventId': eventId
+    }
+    eventPostings = dbInterface.fetchAll(eventPostingsQuery, eventPostingsQueryArgs)
     
     data = {
-      "eventId": eventId,
-      "event": event
+      "event": event,
+      "eventPosts": eventPostings
     }
     return render_template("events/viewEvent.html", data=data)

@@ -3,8 +3,13 @@
 {% block pageContent %}
 <div class="container">
   <div class="jumbotron">
+    <!-- Title-->
     <h1>{{ data["event"]["name"] }}</h1>
+
+    <!-- Row for Main Info and Additonal Info-->
     <div class="row" justify="center" id="cardRow">
+
+      <!-- Card for Main Info -->
       <div class="card mb-9" id="mainCard">
         <div class="card-body">
           <h4 class="card-subtitle">{{ data["event"]["date"] }} </h4>
@@ -20,9 +25,9 @@
               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0uh4E8rV6zVSlRRa6LfljlUEFato8ry4&q={{ data["event"]["location"] }}">
             </iframe>
           </div>
-          
         </div>
       </div>
+      <!-- Card for Additional Info -->
       <div class="card mb-2" id="additionalInfoCard">
         <div class="card-body">
           <h5 class="card-title">{{ data["event"]["associatedSchool"] }}</h5>
@@ -43,6 +48,16 @@
             <h5 class="card-text"> {{ data["event"]["creatorName"] }} </h5>
           {% endif %}
         </div>
+      </div>
+    </div>
+
+    <!-- Row for Event Postings and Polls -->
+    <div class="row" justify="center" id="cardRow">
+      <!-- Column for Event Postings -->
+      <div class="col">
+        {% for eventPost in data['eventPostings'] %}
+          <p>{{ eventPost[3] }}</p>
+        {% endfor %}
       </div>
     </div>
   </div>
