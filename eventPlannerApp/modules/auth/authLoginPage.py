@@ -25,7 +25,7 @@ def loginSubmit():
         if(check_password_hash(result[0], password)):
             print("logged in")
             user = User.User()
-            user.id = email
+            user.id = username
             login_user(user)
             return redirect("/test/databaseRetrieveItems")
         else:

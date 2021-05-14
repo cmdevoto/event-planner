@@ -6,10 +6,46 @@ from ... import dbInterface
 
 @bp.route("/invitations")
 def invitationHomePageRoute():
-
     resultingInvites = dbInterface.fetchAll("select * from eventInvitations where inviteeUsername = (:iid) and status = 'Pending'", {"iid" : current_user.get_id()})
  
+    inviteInfo = []
+    for i in resultingInvites:
+        eventInfo = dbInterface.fetchOne("select * from events where eventID = (:id)", {"id" : i[0]})
+        inviteInfoDict = {}
+        inviteInfoDict = {
+            "eventID": i[0],
+            "inviterUsername" : i[1],
+            "inviteeUsername" : i[2],
+            "message" : i[3],
+            "status" : i[4],
+            "eventDesc" : eventInfo[1],
+            "eventTime" : eventInfo[2],
+            "eventLoc" : eventInfo[3]
+        }
+        inviteInfo.append(inviteInfoDict)
     data = {
-        "invitations": resultingInvites
+        "invitations": resultingInvites,
+        "invitationInfo" : inviteInfo
     }
+
     return render_template("invitations/invitationHome.html", data=data)
+
+@bp.route("/invitations", methods=['POST'])
+def acceptInvitationSubmit():
+    print("pressed accept")
+    eventID = request.args.get('eventID')
+    inviterUsername = request.args.get('inviterUsername')
+    inviteeUsername = current_user.get_id()
+    print("eventID = {}, inviterUsername = {}, inviteeUsername = {}".format(eventID, inviterUsername, inviteeUsername))
+
+    acceptQuery = "update eventInvitations set status = 'Accepted' where eventID = (:eventID) and inviterUsername = (:inviterUsername) and inviteeUsername = (:inviteeUsername)"    
+    queryParams = {
+        "eventID": eventID,
+        "inviterUsername": inviterUsername,
+        "inviteeUsername":inviteeUsername
+    }
+
+    result = dbInterface.commit(acceptQuery, queryParams)
+    flash('You successfully accepted this invitation')
+    print(result)
+    return redirect("/sentinvitations")
