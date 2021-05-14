@@ -64,7 +64,9 @@
         <label class="form-label mt-4" for="creatorInput"> {{- form.creatorUsername.label -}}: </label>
         {{ form.creatorUsername(class="form-control", id="creatorInput", readonly=true) }}
       </fieldset>
-      <button class="btn btn-primary" type="submit">Save Event Changes</button>
+      <fieldset>
+        <button class="btn btn-primary" type="submit">Save Event Changes</button>
+      </fieldset>
     </form>
   </div>
 {% endblock %}
