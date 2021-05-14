@@ -7,7 +7,7 @@ import sys
 
 @bp.route("/sentinvitations")
 def sentInvitationsPageRoute():
-    resultingInvites = dbInterface.fetchAll("select * from eventInvitations where inviterUsername = (:iid)", {"iid" : current_user.get_id()})
+    resultingInvites = dbInterface.fetchAll("select * from eventInvitations where inviterUsername = (:iid) and status = 'Pending'", {"iid" : current_user.get_id()})
     inviteInfo = []
     print(current_user.get_id())
     for i in resultingInvites:

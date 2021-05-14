@@ -1,4 +1,4 @@
-from flask import redirect, render_template
+from flask import render_template, request, redirect, flash
 from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin
 
 from . import bp
@@ -46,6 +46,6 @@ def acceptInvitationSubmit():
     }
 
     result = dbInterface.commit(acceptQuery, queryParams)
-    flash('You successfully accepted this invitation')
+    #flash('You successfully accepted this invitation')
     print(result)
     return redirect("/sentinvitations")
