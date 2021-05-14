@@ -55,7 +55,7 @@ def event_edit_page(eventId):
     form = EditEventForm()
     form.description.data = event['name']
     form.day.data = event['day']
-    form.month.data = str(event['month'])
+    form.month.data = '{}'.format(event['month'])
     form.year.data = event['year']
     form.hour.data = event['hour']
     form.minute.data = event['minute']
