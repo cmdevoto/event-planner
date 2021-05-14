@@ -55,6 +55,7 @@ def event_edit_page(eventId):
     form = EditEventForm()
     form.month.data = eventDateTime.month
     form.amPm.data = event['amPm']
+    form.accessStatus = event['accessStatus']
 
     print("Month Num: {}".format(eventDateTime.month))
 
