@@ -6,6 +6,7 @@ from wtforms import DateField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired
 
 import calendar
+from datetime import datetime
 
 from . import bp
 from ... import dbInterface
@@ -54,6 +55,30 @@ def editEventPageRoute(eventId):
     }
 
     form = EditEventForm()
+
+    if form.validate_on_submit():
+        updateEventQuery = '''update events 
+          set description = :description, eventTime = :eventTime, location = :location, 
+              accessStatus = :accessStatus, associatedSchool = :associatedSchool
+          where eventId = :eventId
+          '''
+        updateEventQueryArgs = {
+          'description': form.description.data,
+          'eventTime': datetime(
+            year=int(form.year.data), 
+            month=int(form.month.data),
+            day=int(form.day.data),
+            hour=int(form.hour.data) if form.amPm == 'AM' else int(form.hour.data) + 12,
+            minute=int(form.minute.data),
+            ),
+          'location': form.location.data,
+          'accessStatus': form.accessType.data,
+          'associatedSchool': form.associatedSchool.data,
+          'eventId': eventId
+        }
+        dbInterface.commit(updateEventQuery, updateEventQueryArgs)
+        return redirect(url_for('.viewEventPageRoute', eventId=eventId))
+
     form.description.data = event['name']
     form.day.data = event['day']
     form.month.data = '{}'.format(event['month'])
@@ -66,11 +91,6 @@ def editEventPageRoute(eventId):
     form.accessType.data = event['accessType']
     form.associatedSchool.data = event['associatedSchool']
     form.creatorUsername.data = event['creatorUsername']
-
-    print("Month Num: {}".format(eventDateTime.month))
-
-    if form.validate_on_submit():
-      return redirect(url_for('.viewEventPageRoute', eventId=eventId))
 
     return render_template('events/editEvent.html', form=form, data=data)
 
