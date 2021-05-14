@@ -56,9 +56,12 @@ def editEventPageRoute(eventId):
 
     form = EditEventForm()
 
-    if form.submitted():
-        print('Form Submitted: {}'.format(form))
+    if form.is_submmitted() and not form.validate():
         print('Form Errors: {}'.format(form.errors))
+
+    if form.validate_on_submit():
+        print('Form Submitted: {}'.format(form))
+        
         updateEventQuery = '''update events 
           set description = :description, eventTime = :eventTime, location = :location, 
               accessStatus = :accessStatus, associatedSchool = :associatedSchool
