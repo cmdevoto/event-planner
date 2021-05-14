@@ -55,7 +55,7 @@ def event_edit_page(eventId):
     form = EditEventForm()
     form.month.data = eventDateTime.month
     form.amPm.data = event['amPm']
-    form.accessStatus.data = event['accessStatus']
+    form.accessType.data = event['accessType']
 
     print("Month Num: {}".format(eventDateTime.month))
 
@@ -82,7 +82,7 @@ class EditEventForm(FlaskForm):
     date = DateField('Date', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
     ownerUsername = StringField('Owner', validators=[DataRequired()])
-    accessStatus = SelectField('Visibility', 
+    accessType = SelectField('Visibility', 
         choices=[('public', 'Public'), ('private', 'Private')], 
         validators=[DataRequired()]
         )
