@@ -8,6 +8,20 @@
         <label class="form-lavel mt-4" for="descriptionInput"> {{- form.description.label -}}: </label>
         {{ form.description(class="form-control", id="descriptionInput", value=data['event']['name']) }}
       </fieldset>
+      <div class="row">
+        <div class="col">
+          <fieldset>
+            <label class="form-lavel mt-4" for="dayInput"> {{- form.day.label -}}: </label>
+            {{ form.date(class="form-control", id="dayInput", value=data['event']['day']) }}
+          </fieldset>
+        </div>
+        <div class="col">
+          <fieldset>
+            <label class="form-lavel mt-4" for="monthInput"> {{- form.month.label -}}: </label>
+            {{ form.date(class="form-control", id="monthInput", value=data['event']['month']) }}
+          </fieldset>
+        </div>
+      </div>
       <fieldset>
         <label class="form-lavel mt-4" for="ownerInput"> {{- form.ownerUsername.label -}}: </label>
         {{ form.ownerUsername(class="form-control", id="ownerInput", value=data['event']['ownerUsername'], readonly=true) }}

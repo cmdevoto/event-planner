@@ -29,8 +29,12 @@ def event_edit_page(eventId):
 
     event = {
       "name": eventFromDb[1],
-      "time": timeString,
-      "date": dateString,
+      "hour": eventDateTime.hour,
+      "minute": eventDateTime.minute,
+      "amPm": eventDateTime.strftime("%p"),
+      "day": eventDateTime.day,
+      "month": eventDateTime.month,
+      "year": eventDateTime.year,
       "location": eventFromDb[3],
       "ownerUsername": eventFromDb[4],
       "ownerName": "",
@@ -63,12 +67,25 @@ def event_edit_page(eventId):
 
 class EditEventForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired()])
+    day = IntegerField('Day', validators=[DataRequired()])
+    month = SelectField('Month',
+        choices=[],
+        validators=[DataRequired()]
+        )
+    year = IntegerField('Year', validators=[DataRequired()])
+    hour = IntegerField('Hour', validators=[DataRequired()])
+    minute = IntegerField('Minute', validators=[DataRequired()])
+    amPm = SelectField('AM/PM', 
+        choices=[('AM', 'AM'), ('PM', 'PM')],
+        validotrs=[DataRequired()]
+        )
     date = DateField('Date', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
     ownerUsername = StringField('Owner', validators=[DataRequired()])
     accessStatus = SelectField('Visibility', 
         choices=[('private', 'Private'), ('public', 'Public')], 
-        validators=[DataRequired()])
+        validators=[DataRequired()]
+        )
     associatedSchool = StringField('Campus', validators=[DataRequired()])
     creatorUsername = StringField('Creator', validators=[DataRequired()])
 
