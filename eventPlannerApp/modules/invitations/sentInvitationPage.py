@@ -19,4 +19,7 @@ def sentInvitationsPageRoute():
 @bp.route("/sentinvitations", methods=['POST'])
 def rescindInvitationSubmit():
     print("pressed button")
+    print(request.form)
+    #print(request.form['eventID'])
+    print(request.form['message'])
     return redirect("/sentinvitations")
