@@ -1,4 +1,5 @@
-from flask import render_template
+from flask import render_template, redirect
+from flask.helpers import url_for
 
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField, StringField, SelectField
@@ -69,7 +70,7 @@ def event_edit_page(eventId):
     print("Month Num: {}".format(eventDateTime.month))
 
     if form.validate_on_submit():
-      print("Form Submitted")
+      return redirect(url_for('event', eventId=eventId))
 
     return render_template('events/editEvent.html', form=form, data=data)
 
