@@ -77,7 +77,7 @@ class EditEventForm(FlaskForm):
     minute = IntegerField('Minute', validators=[DataRequired()])
     amPm = SelectField('AM/PM', 
         choices=[('AM', 'AM'), ('PM', 'PM')],
-        validotrs=[DataRequired()]
+        validators=[DataRequired()]
         )
     date = DateField('Date', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
