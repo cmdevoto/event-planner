@@ -53,7 +53,7 @@ def event_edit_page(eventId):
     }
 
     form = EditEventForm()
-    form.month.data = calendar.month_name[event['month']]
+    form.month.data = calendar.month_name[eventDateTime.month]
     form.amPm.data = event['amPm']
 
     print("Month Num: {}".format(eventDateTime.month))
