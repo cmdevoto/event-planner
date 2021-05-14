@@ -60,6 +60,7 @@ def viewEventPageRoute(eventId):
     
     data = {
       "event": event,
+      "numEventPostings": len(eventPostings),
       "eventPostings": eventPostings
     }
     return render_template("events/viewEvent.html", data=data)
