@@ -10,7 +10,7 @@ from . import bp
 from ... import dbInterface
 
 
-@bp.route('/event/edit/<int:eventId>')
+@bp.route('/event/edit/<int:eventId>', methods=['GET', 'POST'])
 def event_edit_page(eventId):
     eventQuery = "select * from events where eventId=:eventId"
     eventQueryParams = {
