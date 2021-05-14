@@ -67,6 +67,10 @@ def editEventPageRoute(eventId):
               accessStatus = :accessStatus, associatedSchool = :associatedSchool
           where eventId = :eventId
           '''
+
+        print("Hour: {}".format(form.hour.data))
+        print("AMPM: {}".format(form.amPm.data))
+
         updateEventQueryArgs = {
           'description': form.description.data,
           'eventTime': datetime(
