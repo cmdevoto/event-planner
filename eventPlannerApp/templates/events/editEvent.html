@@ -44,7 +44,7 @@
         <div class="col">
           <fieldset>
             <label class="form-label mt-3" for="amPmInput"> {{- form.amPm.label -}}: </label>
-            {{ form.amPm(class="form-control", id="amPmInput", default=data['event']['amPm']) }}
+            {{ form.amPm(class="form-control", id="amPmInput") }}
           </fieldset>
         </div>
       </div>
@@ -53,8 +53,8 @@
         {{ form.location(class="form-control", id="locationInput", value=data['event']['location']) }}
       </fieldset>
       <fieldset>
-        <label class="form-label mt-4" for="accessStatusInput"> {{- form.accessStatus.label -}}: </label>
-        {{ form.accessStatus(class="form-control", id="accessStatusInput", value=data['event']['accessStatus']) }}
+        <label class="form-label mt-4" for="accessTypeInput"> {{- form.accessType.label -}}: </label>
+        {{ form.accessType(class="form-control", id="accessTypeInput") }}
       </fieldset>
       <fieldset>
         <label class="form-label mt-4" for="ownerInput"> {{- form.ownerUsername.label -}}: </label>
