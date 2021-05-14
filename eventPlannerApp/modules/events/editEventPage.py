@@ -82,7 +82,7 @@ class EditEventForm(FlaskForm):
     location = StringField('Location', validators=[DataRequired()])
     ownerUsername = StringField('Owner', validators=[DataRequired()])
     accessStatus = SelectField('Visibility', 
-        choices=[('private', 'Private'), ('public', 'Public')], 
+        choices=[('public', 'Public'), ('private', 'Private')], 
         validators=[DataRequired()]
         )
     associatedSchool = StringField('Campus', validators=[DataRequired()])
