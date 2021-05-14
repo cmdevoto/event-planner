@@ -18,7 +18,7 @@
         <div class="col">
           <fieldset>
             <label class="form-label mt-3" for="monthInput"> {{- form.month.label -}}: </label>
-            {{ form.month(class="form-control", id="monthInput", value=data['event']['month']) }}
+            {{ form.month(class="form-control", id="monthInput", default=data['event']['month']) }}
           </fieldset>
         </div>
         <div class="col">
@@ -44,7 +44,7 @@
         <div class="col">
           <fieldset>
             <label class="form-label mt-3" for="amPmInput"> {{- form.amPm.label -}}: </label>
-            {{ form.amPm(class="form-control", id="amPmInput", value=data['event']['amPm']) }}
+            {{ form.amPm(class="form-control", id="amPmInput", default=data['event']['amPm']) }}
           </fieldset>
         </div>
       </div>
