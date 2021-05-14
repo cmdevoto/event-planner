@@ -33,14 +33,16 @@ def deleteAccountSubmit():
 
             result = dbInterface.commit(deleteQuery, deleteParams)
             print("deletion successful")
-            flash("deletion successful")
+            flash("Successfully Deleted Your Account!")
             logout_user()
             return redirect("/login")
         else:
             print("passwords do not match")
+            flash("The Pasword You Entered Does Not Match")
             return redirect("/deleteAccount")
     else:
         print("no user found, fatal")
+        flash("No User FOund, Fatal")
         return redirect("/login")
 
     

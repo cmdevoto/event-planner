@@ -29,10 +29,12 @@ def changePassSubmit():
 
         result = dbInterface.commit(updateQuery, updateParams)
         print("Please Log In Again")
+        flash("Password updated, please log in again!")
         logout_user()
         return redirect("/login")
     else:
         print("Passwords must match")
+        flash("Passwords Must Match, Please Try Again!")
         return redirect("/changePassword")
 
     
