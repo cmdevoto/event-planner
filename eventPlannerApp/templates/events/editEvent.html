@@ -57,6 +57,10 @@
         {{ form.accessType(class="form-control", id="accessTypeInput") }}
       </fieldset>
       <fieldset>
+        <label class="form-label mt-4" for="associatedSchoolInput"> {{- form.associatedSchool.label -}}: </label>
+        {{ form.associatedSchool(class="form-control", id="associatedSchoolInput", readonly=true) }}
+      </fieldset>
+      <fieldset>
         <label class="form-label mt-4" for="ownerInput"> {{- form.ownerUsername.label -}}: </label>
         {{ form.ownerUsername(class="form-control", id="ownerInput", readonly=true) }}
       </fieldset>
