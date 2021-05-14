@@ -5,8 +5,8 @@
     <form method="POST">
       {{ form.csrf_token }}
       <fieldset>
-        <label class="form-lavel mt-4" for="descriptionInput"> {{- form.creatorUsername.label -}}: </label>
-        {{ form.description(class="form-control", id="descriptionInput", value=data['event']['description'], readonly=true) }}
+        <label class="form-lavel mt-4" for="descriptionInput"> {{- form.description.label -}}: </label>
+        {{ form.description(class="form-control", id="descriptionInput", value=data['event']['name']) }}
       </fieldset>
       <fieldset>
         <label class="form-lavel mt-4" for="ownerInput"> {{- form.ownerUsername.label -}}: </label>
