@@ -19,14 +19,6 @@ def event_edit_page(eventId):
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
     eventDateTime = eventFromDb[2]
-    dateString = "{}, {} {}, {}".format(
-      eventDateTime.strftime("%A"),
-      calendar.month_name[eventDateTime.month], 
-      eventDateTime.day, 
-      eventDateTime.year
-    )
-    timeString = eventDateTime.strftime("%I:%M %p")
-
     event = {
       "name": eventFromDb[1],
       "hour": eventDateTime.hour,
@@ -61,6 +53,8 @@ def event_edit_page(eventId):
     }
 
     form = EditEventForm()
+
+    print("Month Num: {}".format(eventDateTime.month))
 
     return render_template('events/editEvent.html', form=form, data=data)
 
