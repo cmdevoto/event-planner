@@ -12,7 +12,7 @@ from ... import dbInterface
 
 
 @bp.route('/event/edit/<int:eventId>', methods=['GET', 'POST'])
-def event_edit_page(eventId):
+def editEventPageRoute(eventId):
     eventQuery = "select * from events where eventId=:eventId"
     eventQueryParams = {
       "eventId": eventId
@@ -70,7 +70,7 @@ def event_edit_page(eventId):
     print("Month Num: {}".format(eventDateTime.month))
 
     if form.validate_on_submit():
-      return redirect(url_for('event', eventId=eventId))
+      return redirect(url_for('.viewEventPageRoute', eventId=eventId))
 
     return render_template('events/editEvent.html', form=form, data=data)
 
