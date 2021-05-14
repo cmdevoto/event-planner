@@ -11,14 +11,40 @@
       <div class="row">
         <div class="col">
           <fieldset>
-            <label class="form-lavel mt-4" for="dayInput"> {{- form.day.label -}}: </label>
-            {{ form.date(class="form-control", id="dayInput", value=data['event']['day']) }}
+            <label class="form-lavel mt-3" for="dayInput"> {{- form.day.label -}}: </label>
+            {{ form.day(class="form-control", id="dayInput", value=data['event']['day']) }}
           </fieldset>
         </div>
         <div class="col">
           <fieldset>
-            <label class="form-lavel mt-4" for="monthInput"> {{- form.month.label -}}: </label>
-            {{ form.date(class="form-control", id="monthInput", value=data['event']['month']) }}
+            <label class="form-lavel mt-3" for="monthInput"> {{- form.month.label -}}: </label>
+            {{ form.month(class="form-control", id="monthInput", value=data['event']['month']) }}
+          </fieldset>
+        </div>
+        <div class="col">
+          <fieldset>
+            <label class="form-lavel mt-3" for="yearInput"> {{- form.year.label -}}: </label>
+            {{ form.year(class="form-control", id="yearInput", value=data['event']['year']) }}
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <fieldset>
+            <label class="form-lavel mt-3" for="hourInput"> {{- form.hour.label -}}: </label>
+            {{ form.day(class="form-control", id="hour", value=data['event']['hour']) }}
+          </fieldset>
+        </div>
+        <div class="col">
+          <fieldset>
+            <label class="form-lavel mt-3" for="minuteInput"> {{- form.minute.label -}}: </label>
+            {{ form.minute(class="form-control", id="minuteInput", value=data['event']['minute']) }}
+          </fieldset>
+        </div>
+        <div class="col">
+          <fieldset>
+            <label class="form-lavel mt-3" for="amPmInput"> {{- form.amPm.label -}}: </label>
+            {{ form.amPm(class="form-control", id="amPmInput", value=data['event']['amPm']) }}
           </fieldset>
         </div>
       </div>
