@@ -61,6 +61,7 @@
               <h5 class="card-title">Posts</h5>
               {% for eventPost in data['eventPostings'] %}
                 <hr />
+                <h5 class="card-subtitle">{{ eventPost[2] }}: </h5>
                 <p class="card-text">{{ eventPost[3] }}</p>
               {% endfor %}
             {% endif %}
