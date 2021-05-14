@@ -57,7 +57,7 @@
       <div class="col">
         <div class="card mb-2" id="additionalInfoCard">
           <div class="card-body">
-            {% if data['eventPostings'] %}
+            {% if len(data['eventPostings']) > 0 %}
               <h5 class="card-title">Posts</h5>
               {% for eventPost in data['eventPostings'] %}
                 <hr />
