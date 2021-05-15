@@ -1,5 +1,5 @@
 from flask import redirect, render_template
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 import calendar
 
@@ -28,6 +28,7 @@ def viewEventPageRoute(eventId):
     timeString = eventDateTime.strftime("%I:%M %p")
 
     event = {
+      "eventId": eventFromDb[0],
       "name": eventFromDb[1],
       "time": timeString,
       "date": dateString,
@@ -59,6 +60,7 @@ def viewEventPageRoute(eventId):
     print("Event Postings: {}".format(eventPostings))
     
     data = {
+      "currentUserId": current_user.get_id(),
       "event": event,
       "numEventPostings": len(eventPostings),
       "eventPostings": eventPostings

@@ -4,7 +4,16 @@
 <div class="container">
   <div class="jumbotron">
     <!-- Title-->
-    <h1>{{ data["event"]["name"] }}</h1>
+    <div class="row" justify="center" id="eventInfoHeader">
+      <div class="col">
+        <h1>{{ data["event"]["name"] }}</h1>
+      </div>
+      <div class="col">
+        <a href="/event/edit/{{ data["event"]["eventId"] }}">
+          <button type="button" class="btn btn-secondary">Edit Event</button>
+        </a>
+      </div>
+    </div>
 
     <!-- Row for Main Info and Additonal Info-->
     <div class="row" justify="center" id="cardRow">
@@ -75,6 +84,11 @@
 </div>
 
 <style>
+
+  #eventInfoHeader {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
   #cardRow {
     flex-wrap: wrap;
