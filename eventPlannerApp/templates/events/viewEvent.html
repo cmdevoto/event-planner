@@ -5,14 +5,10 @@
   <div class="jumbotron">
     <!-- Title-->
     <div class="row" justify="center" id="eventInfoHeader">
-      <div class="col">
-        <h1>{{ data["event"]["name"] }}</h1>
-      </div>
-      <div class="col">
-        <a href="/event/edit/{{ data["event"]["eventId"] }}">
-          <button type="button" class="btn btn-secondary">Edit Event</button>
-        </a>
-      </div>
+      <h1>{{ data["event"]["name"] }}</h1>
+      <a href="/event/edit/{{ data["event"]["eventId"] }}">
+        <button type="button" class="btn btn-secondary">Edit Event</button>
+      </a>
     </div>
 
     <!-- Row for Main Info and Additonal Info-->
