@@ -59,6 +59,7 @@ def editEventPageRoute(eventId):
 
     if form.is_submitted() and not form.validate():
         print('Form Errors: {}'.format(form.errors))
+        # ToDo: Form Errors Updates
 
     if form.validate_on_submit():
         print('Form Submitted: {}'.format(form))
