@@ -7,15 +7,21 @@ import sys
 
 @bp.route("/createinvitation")
 def createInvitationPageRoute():
-    resultingEvents = dbInterface.fetchAll("select * from events", {})
-    resultingUsers = dbInterface.fetchAll("select * from users", {})
-    resultingGroups = dbInterface.fetchAll("select * from groups", {})
+
+    school = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()}) 
+    params = {
+        "school": school[0]
+    }
+
+    resultingEvents = dbInterface.fetchAll("select eventID, description from events where associatedSchool = (:school)", params)
+    print(resultingEvents)
+    resultingUsers = dbInterface.fetchAll("select username from users where associatedSchool = (:school)", params)
+    resultingGroups = dbInterface.fetchAll("select groupID, groupName from groups where associatedSchool = (:school)", params)
     data = {
         "events": resultingEvents,
         "users": resultingUsers,
         "groups": resultingGroups
     }
-    #logout_user()
     print(current_user.get_id())
     return render_template("invitations/createInvitation.html", data=data)
 
