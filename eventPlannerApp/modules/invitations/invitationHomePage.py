@@ -1,10 +1,11 @@
 from flask import render_template, request, redirect, flash
-from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin
+from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin, login_required
 
 from . import bp
 from ... import dbInterface
 
 @bp.route("/invitations")
+@login_required
 def invitationHomePageRoute():
     resultingInvites = dbInterface.fetchAll("select * from eventInvitations where inviteeUsername = (:iid) and status = 'Pending'", {"iid" : current_user.get_id()})
  
@@ -33,9 +34,16 @@ def invitationHomePageRoute():
 @bp.route("/invitations", methods=['POST'])
 def acceptInvitationSubmit():
     print("pressed accept")
-    eventID = request.args.get('eventID')
-    inviterUsername = request.args.get('inviterUsername')
-    inviteeUsername = current_user.get_id()
+
+    try:
+        eventID = request.args.get('eventID')
+        inviterUsername = request.args.get('inviterUsername')
+        inviteeUsername = current_user.get_id()
+    except:
+        flash("An error occured processing your request.")
+        return redirect("/invitations")
+
+
     print("eventID = {}, inviterUsername = {}, inviteeUsername = {}".format(eventID, inviterUsername, inviteeUsername))
 
     acceptQuery = "update eventInvitations set status = 'Accepted' where eventID = (:eventID) and inviterUsername = (:inviterUsername) and inviteeUsername = (:inviteeUsername)"    
@@ -46,6 +54,6 @@ def acceptInvitationSubmit():
     }
 
     result = dbInterface.commit(acceptQuery, queryParams)
-    #flash('You successfully accepted this invitation')
+    flash('You successfully accepted this invitation')
     print(result)
-    return redirect("/sentinvitations")
+    return redirect("/invitations")

@@ -1,11 +1,12 @@
 from flask import render_template, request, redirect, flash
-from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin
+from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin, login_required
 
 from . import bp
 from ... import dbInterface
 import sys
 
 @bp.route("/sentinvitations")
+@login_required
 def sentInvitationsPageRoute():
     resultingInvites = dbInterface.fetchAll("select * from eventInvitations where inviterUsername = (:iid) and status = 'Pending'", {"iid" : current_user.get_id()})
     inviteInfo = []
@@ -34,9 +35,15 @@ def sentInvitationsPageRoute():
 @bp.route("/sentinvitations", methods=['POST'])
 def rescindInvitationSubmit():
     print("pressed button")
-    eventID = request.args.get('eventID')
-    inviteeUsername = request.args.get('inviteeUsername')
-    inviterUsername = current_user.get_id()
+
+    try:
+        eventID = request.args.get('eventID')
+        inviteeUsername = request.args.get('inviteeUsername')
+        inviterUsername = current_user.get_id()
+    except:
+        flash("An error occured while trying to process your request.")
+        return redirect("/sentinvitations")
+
     print("eventID = {}, inviterUsername = {}, inviteeUsername = {}".format(eventID, inviterUsername, inviteeUsername))
     
     deleteQuery = "delete from eventInvitations where eventID = (:eventID) and inviterUsername = (:inviterUsername) and inviteeUsername = (:inviteeUsername)"
