@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, flash
 from werkzeug.security import check_password_hash
 from . import bp
 from ... import dbInterface, User
@@ -30,6 +30,7 @@ def loginSubmit():
             return redirect("/test/databaseRetrieveItems")
         else:
             print("not logged in")
+            flash("Incorrect Username or Password")
             return redirect("/login")
     else:
         print("not logged in")
