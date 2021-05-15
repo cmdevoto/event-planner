@@ -70,12 +70,20 @@
       </fieldset>
       <br />
       <fieldset>
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-primary" type="submit">Save Event Changes</button>
-          </div>
+        <div class="row" id="buttonsRow">
+          <a href="event/{{- data["event"]["eventId"] -}}">
+            <button type="button" class="btn btn-outline-secondary">Cancel Changes</button>
+          </a>
+          <button class="btn btn-primary" type="submit">Save Event Changes</button>
         </div>
       </fieldset>
     </form>
   </div>
+
+  <style>
+    #buttonsRow {
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  </style>
 {% endblock %}

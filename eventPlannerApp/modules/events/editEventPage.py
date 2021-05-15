@@ -22,6 +22,7 @@ def editEventPageRoute(eventId):
 
     eventDateTime = eventFromDb[2]
     event = {
+      "eventId": eventFromDb[0],
       "name": eventFromDb[1],
       "hour": eventDateTime.strftime("%-I"),
       "minute": eventDateTime.minute,
