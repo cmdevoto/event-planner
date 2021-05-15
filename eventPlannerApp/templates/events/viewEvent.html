@@ -8,11 +8,11 @@
       <h1>{{ data["event"]["name"] }}</h1>
 
       <!--  TODO: Uncomment and see if this works -->
-      <!-- {% if data["currentUserId"] == data["event"]["ownerUsername"] %} -->
+      <!--  if data["currentUserId"] == data["event"]["ownerUsername"]  -->
       <a href="/event/edit/{{- data["event"]["eventId"] -}}">
         <button type="button" class="btn btn-secondary">Edit Event</button>
       </a>
-      <!--  {% endif %}  -->
+      <!--   endif   -->
     </div>
 
     <!-- Row for Main Info and Additonal Info-->
