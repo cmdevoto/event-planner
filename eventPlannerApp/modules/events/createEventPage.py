@@ -1,11 +1,13 @@
 from flask import render_template, request, redirect
-from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin
+from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin, login_required
 
 from . import bp
 from ... import dbInterface
 import sys
 
+
 @bp.route("/createevent")
+@login_required
 def createEventPageRoute():
     resultingGroups = dbInterface.fetchAll("select * from groups", {})
     data = {
