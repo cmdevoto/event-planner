@@ -27,7 +27,9 @@ def loginSubmit():
             user = User.User()
             user.id = email
             login_user(user)
-            return redirect("/test/databaseRetrieveItems")
+            # must make this protected route
+            return redirect("/events")
+            #return redirect("/test/databaseRetrieveItems")
         else:
             print("not logged in")
             flash("Incorrect Username or Password")
