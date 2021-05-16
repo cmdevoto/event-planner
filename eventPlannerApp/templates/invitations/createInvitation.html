@@ -1,0 +1,71 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+<div class="container">
+
+  {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>{{ message }}</strong>
+            </div>
+          {% endfor %}
+       {% endif %}
+  {% endwith %}
+
+  <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/invitations">My Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/sentinvitations">View Sent Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="/createinvitation">Send Event Invitation</a>
+  </li>
+  </ul>
+
+  <h1 class="text-secondary"> Send Event Invitation! </h1>
+ 
+  <form method="POST">
+  <fieldset>
+
+    <div class="form-group">
+      <label for="groupSelect">Select Event</label>
+      <select class="form-control" name="eventSelect" id="eventSelect">
+          {% for item in data["events"] %}
+            <option>{{ item [0] }}: {{ item[1] }}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="groupSelect">Select Group(s) to Invite</label>
+      <select multiple="multiple" class="form-control" name="groupSelect" id="groupSelect">
+          {% for item in data["groups"] %}
+            <option>{{ item [0] }}: {{ item[1] }} </option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="groupSelect">Select Individual User(s) to Invite</label>
+      <select multiple="multiple" class="form-control" name="userSelect" id="userSelect">
+          {% for item in data["users"] %}
+            <option>{{ item [0] }} </option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="eventDesc">Message</label>
+      <textarea class="form-control" name="message" id="message" rows="2"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Invitation!</button>
+  </fieldset>
+</form>
+ 
+</div>
+{% endblock %}
