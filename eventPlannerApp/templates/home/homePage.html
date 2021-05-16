@@ -1,45 +1,52 @@
 {% extends 'pageBase.html' %}
 
 {% block pageContent %}
+<script src="https://kit.fontawesome.com/4cdaaa1b4a.js" crossorigin="anonymous"></script>
 <div class="container">
   <div class="row">
     <div class="jumbotron">
-      <div class="row">
-        <h1 class="display-1">Welcome!</h1>
-        <h4 class="display-4">All The Events is here to help!<h3>
-      </div>
+      <h1 class="display-2" style="text-align: center; font-family:Courier New;">localHost</h1>
+      <h6 style="text-align: center; font-style: italic;">Planning and attending events have never been easier.<h6>
+      <br>
       <div class="row" >
-        <h5>How It Works<h5>
+        <h5>How It Works:<h5>
         <hr/>
       </div>
+
       <div class="row align-items-center">
         <div class="col-lg-4">
           <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-
+	    <br>
+	    <i class="fas fa-users fa-5x" style="text-align: center;"></i>
             <div class="card-body">
-              <h4 class="card-title">Join</h4>
-              <p class="card-text">Sign up for All The Events with your email and login.</p>
+              <h4 class="card-title" style="font-family:Courier New">Join</h4>
+              <p class="card-text">Sign up for localHost with your email and login.</p>
             </div>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+   	    <br>
+	    <i class="far fa-calendar-plus fa-5x" style="text-align: center;"></i>
             <div class="card-body">
-              <h4 class="card-title">Create</h4>
+              <h4 class="card-title" style="font-family:Courier New">Create</h4>
               <p class="card-text">Create events and fill out the information.</p>
             </div>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-            <div class="card-body">
-              <h4 class="card-title">Invite</h4>
-              <p class="card-text">Add your friends to the event invites so that they are in the loop.</p>
+	    <br>
+            <i class="far fa-envelope-open fa-5x" style="text-align: center;"></i>
+	    <div class="card-body">
+              <h4 class="card-title" style="font-family:Courier New">Invite</h4>
+              <p class="card-text">Invite your friends to the event so that they are in the loop.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+<p class="text-center">Designed by Christian Amstutz, Caroline DeVoto, Brendan Divney</p>
 </div>
 {% endblock %}

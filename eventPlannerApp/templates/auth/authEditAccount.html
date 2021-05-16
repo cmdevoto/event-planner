@@ -1,0 +1,18 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+  <div class="jumbotron">
+    <h1 class="text-secondary"> Edit Account </h1>
+    <br>
+    <div>    
+        <a href="/changePassword">
+            <button class="btn btn-lg btn-primary" type="button">Change Password</button>
+        </a>
+	<br>
+	<br>
+        <a href="/deleteAccount">
+            <button class="btn btn-lg btn-primary" type="button">Delete Account</button>
+        </a>
+    </div>  
+  </div>
+{% endblock %}
