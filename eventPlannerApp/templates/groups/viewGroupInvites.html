@@ -36,8 +36,8 @@
           <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
           <div class="card-header">Group Owner: {{ item["ownerUsername"] }}</div>
           <div class="card-body">
-            <h4 class="card-title">{{ item["groupName"] }}</h4>
-	    <p name = "desc" class="card-text">"{{ item["groupDesc"] }}"</p>	
+            <h4 class="card-title">Join Group: {{ item["groupName"] }}</h4>
+	    <p name = "desc" class="card-text" style="font-style: italic;">{{ item["groupDesc"] }}</p>	
             <p name = "message" class="card-text">"{{ item["message"] }}"</p>
 	    <form method="POST" action = "/viewgroupinvites?groupID={{ item["groupID"] }}">
               <button class="btn btn-secondary btn-sm" type="submit">Accept Group Invitation</button>

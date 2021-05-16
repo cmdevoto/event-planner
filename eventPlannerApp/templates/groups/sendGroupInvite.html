@@ -19,28 +19,28 @@
     <a class="nav-link" data-toggle="tab" href="/groups">My Groups</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="/creategroup">Create New Group</a>
+    <a class="nav-link" data-toggle="tab" href="/creategroup">Create New Group</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="/viewgroupinvites">View Group Invitations</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="/sendgroupinvite">Send Group Invitation</a>
+    <a class="nav-link active" data-toggle="tab" href="/sendgroupinvite">Send Group Invitation</a>
   </li>
   </ul>
 
-  <h1 class="text-secondary"> Create New Group! </h1>
+  <h1 class="text-secondary"> Send Group Invitation </h1>
  
   <form method="POST">
   <fieldset>
-    <div class="form-group">
-      <label for="eventDesc">Group Name</label>
-      <input class="form-control" name="groupName" id="groupName" maxlength=20>
-    </div>
 
     <div class="form-group">
-      <label for="eventLocation">Group Description</label>
-      <input class="form-control" name="groupDesc" id="groupDesc" maxlength=30>
+      <label for="groupSelect">Select Group</label>
+      <select class="form-control" name="groupSelect" id="groupSelect">
+          {% for item in data["groups"] %}
+            <option>{{ item [0] }}: {{ item[1] }}</option>
+          {% endfor %}
+      </select>
     </div>
 
     <div class="form-group">
@@ -57,7 +57,7 @@
       <textarea class="form-control" name="message" id="message" rows="1" maxlength=30></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create Group!</button>
+    <button type="submit" class="btn btn-primary">Send Invitation!</button>
   </fieldset>
 </form>
  

@@ -26,7 +26,7 @@ def leaveGroupSubmit():
         flash("An error occured processing your request.")
         return redirect("/groups")
 
-    leaveQuery = "update eventInvitations set status = 'Accepted' where eventID = (:eventID) and inviterUsername = (:inviterUsername) and inviteeUsername = (:inviteeUsername)"    
+    leaveQuery = "delete from groupMembership where groupID = (:groupID) and username = (:uname)"
     queryParams = {
         "groupID": groupID,
         "uname": username
