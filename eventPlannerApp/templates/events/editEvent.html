@@ -6,7 +6,7 @@
     <!-- Show Errors If they Exist -->
     {% if form.errors %}
       {% for form_element in form.errors %}
-        {% for error in form_element %}
+        {% for error in form.errors[form_element] %}
         <div class="alert alert-danger"><strong>Oops!</strong> {{- error -}}</div>
         {% endfor %}
       {% endfor %}
