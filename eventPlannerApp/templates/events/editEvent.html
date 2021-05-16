@@ -5,8 +5,10 @@
     
     <!-- Show Errors If they Exist -->
     {% if form.errors %}
-      {% for error in form.errors %}
-      <div class="alert alert-danger">{{ error }}</div>
+      {% for form_element in form.errors %}
+        {% for error in form_element %}
+        <div class="alert alert-danger"><strong>Oops!</strong> {{- error -}}</div>
+        {% endfor %}
       {% endfor %}
     {% endif %}
     
