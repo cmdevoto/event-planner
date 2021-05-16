@@ -3,7 +3,7 @@ from flask.helpers import url_for
 
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField, StringField, SelectField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, NumberRange
 
 import calendar
 from datetime import datetime
@@ -108,7 +108,7 @@ def editEventPageRoute(eventId):
 
 class EditEventForm(FlaskForm):
     description = StringField('Name', validators=[DataRequired()])
-    day = IntegerField('Day', validators=[DataRequired()])
+    day = IntegerField('Day', validators=[DataRequired(), NumberRange(min=1, max=31)])
     month = SelectField('Month',
         choices=[ ( '1', calendar.month_name[1]),  ( '2', calendar.month_name[2]),  ( '3', calendar.month_name[3]), 
                   ( '4', calendar.month_name[4]),  ( '5', calendar.month_name[5]),  ( '6', calendar.month_name[6]), 
@@ -116,9 +116,9 @@ class EditEventForm(FlaskForm):
                   ('10', calendar.month_name[10]), ('11', calendar.month_name[11]), ('12', calendar.month_name[12])],
         validators=[DataRequired()]
         )
-    year = IntegerField('Year', validators=[DataRequired()])
-    hour = IntegerField('Hour', validators=[DataRequired()])
-    minute = IntegerField('Minute', validators=[DataRequired()])
+    year = IntegerField('Year', validators=[DataRequired(), NumberRange(min=1900, max=2400)])
+    hour = IntegerField('Hour', validators=[DataRequired(), NumberRange(min=1, max=12)])
+    minute = IntegerField('Minute', validators=[DataRequired(), NumberRange(min=1, max=60)])
     amPm = SelectField('AM/PM', 
         choices=[('AM', 'AM'), ('PM', 'PM')],
         validators=[DataRequired()]

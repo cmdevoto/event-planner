@@ -2,6 +2,15 @@
 
 {% block pageContent %}
   <div class="jumbotron">
+    
+    <!-- Show Errors If they Exist -->
+    {% if form.errors %}
+      {% for error in form.errors %}
+      <div class="alert alert-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+    
+    <!-- Edit Event Form -->
     <form method="POST">
       {{ form.csrf_token }}
       <fieldset>
