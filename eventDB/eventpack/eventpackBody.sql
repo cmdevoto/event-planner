@@ -1,7 +1,7 @@
 create or replace package eventpack 
 as
   function checkValidAccess(username user.username%type, eventId events.eventID%type)
-    return CHAR(5)
+    return VARCHAR2(5)
   is
     cursor inviteCheck (un user.username%type, eid events.eventID%type)
     is
@@ -21,7 +21,7 @@ as
       loop
         fetch eventData into eventOwner, eventCreator;
         exit when eventData%notfound;
-        return "true";
+        return 'true';
       end loop;
       close eventData;
 
@@ -29,10 +29,10 @@ as
       loop
           fetch inviteCheck into eventInvStatus;
           exit when inviteCheck%notfound;
-          return "true";
+          return 'true';
       end loop;
       close inviteCheck;
-      return "false";
+      return 'false';
     end;
 
 end eventpack;
