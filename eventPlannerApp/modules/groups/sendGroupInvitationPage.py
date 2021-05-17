@@ -93,6 +93,7 @@ def sendGroupInvitationSubmit():
 
     formattedMessage = "You have been invited by " + current_user.get_id() + " to the group: " + group + "\n" + current_user.get_id() + " said: \n" + message
     print(formattedMessage)
-    sendMessage(formattedMessage, emailList)
+    if(emailList):
+        sendMessage(formattedMessage, emailList)
 
     return redirect("/groups")

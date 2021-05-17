@@ -95,6 +95,7 @@ def createGroupSubmit():
 
     formattedMessage = "You have been invited by " + ownerUsername + " to the group: " + groupName + "\n" + ownerUsername + " said: \n" + message
     print(formattedMessage)
-    sendMessage(formattedMessage, emailList)
+    if(emailList):
+        sendMessage(formattedMessage, emailList)
 
     return redirect("/groups")

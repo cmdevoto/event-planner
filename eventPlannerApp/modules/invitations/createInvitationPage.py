@@ -137,7 +137,8 @@ def createInvitationSubmit():
     #sending an email to the people invited
     formattedMessage = "You have been invited by " + inviterUsername + " to the event: " + event + "\n" + inviterUsername + " said: \n" + message
     print(formattedMessage)
-    sendMessage(formattedMessage, emailList)
+    if(emailList):
+        sendMessage(formattedMessage, emailList)
 
 
     return redirect("/invitations")
