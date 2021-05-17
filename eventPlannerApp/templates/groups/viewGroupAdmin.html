@@ -1,0 +1,62 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+<div class="container">
+
+  {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             <div class="alert alert-dismissible alert-secondary">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>{{ message }}</strong>
+            </div>
+          {% endfor %}
+       {% endif %}
+  {% endwith %}
+
+  <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="/groups">My Groups</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/creategroup">Create New Group</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/viewgroupinvites">View Group Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/sendgroupinvite">Send Group Invitation</a>
+  </li>
+  </ul>
+
+  <br>
+  <h3> Members of {{ data["groupInfo"][1] }}:</h3>
+  <div class="jumbotron">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Last Name</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+	<tbody>
+          {% for item in data["members"] %}
+          <tr class="table-success">
+            <th scope="row">{{item["lastName"]}}</th>
+            <td>{{ item["firstName"] }}</td>
+            <td>{{ item["username"] }}</td>
+            <td>{{ item["status"] }}</td>
+            <td>
+              <form class="form-inline my-2 my-lg-0" method="POST" action="/groups/admin/{{ item["groupID"] }}?groupID={{ item["groupID"] }}&username={{ item["username"] }}">
+                <button class="btn btn-secondary btn-sm" type="submit">Remove from Group</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </div>
+
+</div>
+{% endblock %}
