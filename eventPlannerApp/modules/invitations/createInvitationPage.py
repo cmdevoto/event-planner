@@ -43,7 +43,7 @@ def createInvitationSubmit():
             server.login(emailUser, emailPass)
             msg = MIMEMultipart()
             msg['From'] = emailUser
-            msg['To'] = recipients
+            msg['To'] = ', '.join(recipients)
             msg['Subject'] = "localhost Invitation"
             print(messageText)
             msg.attach(MIMEText(messageText, 'text'))
