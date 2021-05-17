@@ -4,6 +4,8 @@ import smtplib, ssl
 from . import bp
 from ... import dbInterface
 import sys
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 @bp.route("/createinvitation")
 @login_required
@@ -31,16 +33,24 @@ def createInvitationPageRoute():
 def createInvitationSubmit():
     
     # Setting up email sending
-    port = 465  # For SSL
+    port = 587  # For SSL
     smtp_server = "smtp.gmail.com"
     emailUser = "noreply.localhost.app@gmail.com"
     emailPass = "ILoveRamzi123!"
     def sendMessage(messageText, recipients):
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.starttls()
             server.login(emailUser, emailPass)
+            msg = MIMEMultipart()
+            msg['From'] = emailUser
+            msg['To'] = recipients
+            msg['Subject'] = "localhost Invitation"
             print(messageText)
-            server.sendmail(emailUser, recipients, messageText)
+            msg.attach(MIMEText(messageText, 'text'))
+            s.send_message(msg)
+            s.quit()
+            #server.sendmail(emailUser, recipients, messageText)
     print("email set up")
     event = request.form['eventSelect']
     #print(event.split(':')[0])
