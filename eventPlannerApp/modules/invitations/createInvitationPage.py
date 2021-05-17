@@ -40,7 +40,7 @@ def createInvitationSubmit():
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(emailUser, emailPass)
             server.sendmail(emailUser, recipients, message.rstrip())
-
+    print("email set up")
     event = request.form['eventSelect']
     #print(event.split(':')[0])
     eventID = int(event.split(':')[0])
