@@ -3,6 +3,7 @@ create table groups
  groupName varchar(20),
  groupDesc varchar(30),
  ownerUsername varchar(20),
+ associatedSchool varchar(50),
  CONSTRAINT groupsPK PRIMARY KEY (groupID),
  CONSTRAINT groupUsername FOREIGN KEY (ownerUsername) references users (username)
 );

@@ -3,6 +3,7 @@ create table eventInvitations
  inviterUsername varchar(20),
  inviteeUsername varchar(20),
  invitationMessage varchar(100),
+ status varchar(9),
  CONSTRAINT eventInvitationsPK PRIMARY KEY (eventID, inviterUsername, inviteeUsername),
  CONSTRAINT inviterFK FOREIGN KEY (inviterUsername) references users (username),
  CONSTRAINT inviteeFK FOREIGN KEY (inviteeUsername) references users (username),

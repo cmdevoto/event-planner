@@ -1,0 +1,56 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+
+<div class="container">
+
+  {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             <div class="alert alert-dismissible alert-info">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>{{ message }}</strong>
+            </div>
+          {% endfor %}
+       {% endif %}
+    {% endwith %}
+
+  <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/invitations">My Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="/sentinvitations">View Sent Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/createinvitation">Send Event Invitation</a>
+  </li>
+  </ul>
+  
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Event Description</th>
+            <th scope="col">Inviter Username</th>
+            <th scope="col">Invitee Username</th>
+            <th scope="col">Invitation Message</th>
+	  </tr>
+        </thead>
+        <tbody>
+          {% for item in data["invitationInfo"] %}
+	  <tr class="table-success">
+            <th name = "eventID" scope="row">{{item["eventDesc"]}}</th>
+            <td name = "inviterID">{{ item["inviterUsername"] }}</td>
+            <td name = "inviteeID">{{ item["inviteeUsername"] }}</td>
+            <td name = "message">{{ item["message"] }}</td>
+	    <td>
+		<form method="POST" action = "/sentinvitations?eventID={{ item["eventID"] }}&inviteeUsername={{ item["inviteeUsername"] }}">
+      		<button class="btn btn-secondary btn-sm" type="submit">Rescind</button>
+	    	</form>
+	    </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </div>
+</div>
+{% endblock %}
