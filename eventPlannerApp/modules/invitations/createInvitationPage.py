@@ -123,7 +123,7 @@ def createInvitationSubmit():
 
         result2 = dbInterface.fetchOne(inviteEmailQuery, inviteEmailParams)
         print(result2[0])
-        emailList.append(result2)
+        emailList.append(result2[0])
 
     #sending an email to the people invited
 
