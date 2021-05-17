@@ -122,12 +122,14 @@ def createInvitationSubmit():
         }
 
         result2 = dbInterface.fetchOne(inviteEmailQuery, inviteEmailParams)
+        print(result2[0])
         emailList.append(result2)
 
     #sending an email to the people invited
 
     print(emailList)
-    sendMessage("You have been invited by " + inviterUsername + " to the event: \n" + event + "\nThey said: \n" + message, emailList)
+    formattedMessage = "You have been invited by " + inviterUsername + " to the event: \n" + event + "\nThey said: \n" + message
+    sendMessage(formattedMessage, emailList)
 
 
     return redirect("/invitations")
