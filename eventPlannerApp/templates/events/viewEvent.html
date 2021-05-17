@@ -70,7 +70,7 @@
           
           <div class="card-body">
               <h5 class="card-title">Posts</h5>
-              <div class="row" justify="center" id="eventInfoHeader">
+              <div class="row" justify="center" id="createPostButton">
               <a href="/event/createPost/{{- data["event"]["eventId"] -}}">
               </div>
                 <button type="button" class="btn btn-secondary">Create Post</button>
@@ -95,6 +95,11 @@
   #eventInfoHeader {
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+
+  #createPostButton {
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   #cardRow {
