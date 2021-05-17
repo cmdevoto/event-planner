@@ -8,3 +8,4 @@ from . import eventHomePage
 from . import findEventsPage
 from . import viewEventPage
 from . import viewPastEvents
+from . import createPost
