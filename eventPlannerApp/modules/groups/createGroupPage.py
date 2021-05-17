@@ -93,7 +93,7 @@ def createGroupSubmit():
         result2 = dbInterface.fetchOne(inviteEmailQuery, inviteEmailParams)
         emailList.append(result2[0])
 
-    formattedMessage = "You have been invited by " + ownerUsername + " to the group: \n" + groupName + "\n" + ownerUsername + " said: \n" + message
+    formattedMessage = "You have been invited by " + ownerUsername + " to the group: " + groupName + "\n" + ownerUsername + " said: \n" + message
     print(formattedMessage)
     sendMessage(formattedMessage, emailList)
 
