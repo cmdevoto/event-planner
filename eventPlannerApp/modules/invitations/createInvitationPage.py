@@ -44,7 +44,7 @@ def createInvitationSubmit():
             msg = MIMEMultipart()
             msg['From'] = emailUser
             msg['To'] = ', '.join(recipients)
-            msg['Subject'] = "localhost Invitation"
+            msg['Subject'] = "You Have A New Pending localhost Invitation!"
             print(messageText)
             msg.attach(MIMEText(messageText, 'plain', 'utf-8'))
             server.sendmail(emailUser, recipients, msg.as_string())
