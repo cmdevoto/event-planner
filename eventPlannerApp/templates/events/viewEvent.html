@@ -12,9 +12,7 @@
       <a href="/event/edit/{{- data["event"]["eventId"] -}}">
         <button type="button" class="btn btn-secondary">Edit Event</button>
       </a>
-      <a href="/event/createPost/{{- data["event"]["eventId"] -}}">
-        <button type="button" class="btn btn-secondary">Create Post</button>
-      </a>
+      
       <!--   endif   -->
     </div>
 
@@ -71,6 +69,9 @@
         <div class="card mb-2" id="postsCard">
           <div class="card-body">
               <h5 class="card-title">Posts</h5>
+              <a href="/event/createPost/{{- data["event"]["eventId"] -}}">
+                <button type="button" class="btn btn-secondary">Create Post</button>
+              </a>
               {% for eventPost in data['eventPostings'] %}
                 <hr />
                 <h5 class="card-subtitle">{{ eventPost[2] }} posted: </h5>
