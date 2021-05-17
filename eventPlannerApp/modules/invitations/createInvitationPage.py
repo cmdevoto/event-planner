@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, flash
 from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin, login_required
-
+import smtplib, ssl
 from . import bp
 from ... import dbInterface
 import sys
@@ -115,6 +115,8 @@ def createInvitationSubmit():
         result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
 
     #sending an email to the people invited
+
+
     sendMessage(message, "brendandivney@gmail.com")
 
 
