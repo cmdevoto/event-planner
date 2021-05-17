@@ -1,6 +1,8 @@
 from flask import render_template, redirect
 from flask.helpers import url_for
 
+from flask_login import login_required
+
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, NumberRange
@@ -11,7 +13,7 @@ from datetime import datetime
 from . import bp
 from ... import dbInterface
 
-
+@login_required
 @bp.route('/event/edit/<int:eventId>', methods=['GET', 'POST'])
 def editEventPageRoute(eventId):
     eventQuery = "select * from events where eventId=:eventId"
