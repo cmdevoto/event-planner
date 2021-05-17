@@ -4,19 +4,19 @@ from . import bp
 from ... import dbInterface, User
 from flask_login import current_user, login_user, LoginManager, login_required, logout_user
 
-@bp.route("/event/createPost/<int:eventId>")
+@bp.route("/events/createPost/<int:eventId>")
 @login_required
 def createPost(eventId):
-    return render_template("event/createPost.html")
+    return render_template("events/createPost.html")
 
 
-@bp.route('/event/createPost/<int:eventId>', methods=['POST'])
+@bp.route('/events/createPost/<int:eventId>', methods=['POST'])
 @login_required
 def createPostSubmit(eventId):
     text = request.form['text']
     print(eventId)
     print(text)
-    return redirect("/event/createPost/" + eventId)
+    return redirect("/events/createPost/" + eventId)
 
 
 
