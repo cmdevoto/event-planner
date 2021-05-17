@@ -1,12 +1,12 @@
 create or replace package eventpack 
 as
   function checkValidAccess(username user.username%type, eventId events.eventID%type)
-    return VARCHAR2
+    return VARCHAR2(5);
   is
     cursor inviteCheck (un user.username%type, eid events.eventID%type)
     is
       select status
-      frrom eventInvitations eInv
+      from eventInvitations eInv
       where eInv.eventID = eid and eInv.inviteeUsername = un;
     cursor eventData (eid events.eventID%type)
     is
