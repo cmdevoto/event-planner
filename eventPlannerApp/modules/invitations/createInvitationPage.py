@@ -30,6 +30,17 @@ def createInvitationPageRoute():
 @bp.route("/createinvitation", methods=['POST'])
 def createInvitationSubmit():
     
+    # Setting up email sending
+    port = 465  # For SSL
+    smtp_server = "smtp.gmail.com"
+    emailUser = "noreply.localhost.app@gmail.com"
+    emailPass = "ILoveRamzi123!"
+    def sendMessage(message, recipients):
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(emailUser, emailPass)
+            server.sendmail(emailUser, recipients, message.rstrip())
+
     event = request.form['eventSelect']
     #print(event.split(':')[0])
     eventID = int(event.split(':')[0])
@@ -102,5 +113,9 @@ def createInvitationSubmit():
         }
     
         result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
+
+    #sending an email to the people invited
+    sendMessage(message, "brendandivney@gmail.com")
+
 
     return redirect("/invitations")
