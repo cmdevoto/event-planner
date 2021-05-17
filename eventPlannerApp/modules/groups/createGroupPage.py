@@ -3,6 +3,9 @@ from flask_login import login_required, current_user, login_user, logout_user, L
 from . import bp
 from ... import dbInterface
 import sys
+import smtplib, ssl
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 @bp.route("/creategroup")
 @login_required
@@ -27,6 +30,24 @@ def createGroupPageRoute():
 @bp.route("/creategroup", methods=['POST'])
 def createGroupSubmit():
     
+    # Setting up email sending
+    port = 587  # For SSL
+    smtp_server = "smtp.gmail.com"
+    emailUser = "noreply.localhost.app@gmail.com"
+    emailPass = "ILoveRamzi123!"
+    def sendMessage(messageText, recipients):
+        with smtplib.SMTP(smtp_server, port) as server:
+            server.starttls()
+            server.login(emailUser, emailPass)
+            msg = MIMEMultipart()
+            msg['From'] = emailUser
+            msg['To'] = ', '.join(recipients)
+            msg['Subject'] = "You Have A New Pending localhost Invitation!"
+            print(messageText)
+            msg.attach(MIMEText(messageText, 'plain', 'utf-8'))
+            server.sendmail(emailUser, recipients, msg.as_string())
+            server.quit()
+
     groupName = request.form['groupName']
     groupDesc = request.form['groupDesc']
     ownerUsername = current_user.get_id()
@@ -50,7 +71,7 @@ def createGroupSubmit():
     # list of people invited
     inviteeUsernames = request.form.getlist('userSelect')
     message = request.form['message']
-    
+    emailList = []
     # loop to make invitations (insert into eventInvitations)
     for i in inviteeUsernames:
         membershipInsert =  "insert into groupMembership (username, groupID, status, invitationMessage) values (:username, :groupID, :status, :invitationMessage)"
@@ -63,5 +84,17 @@ def createGroupSubmit():
         }
     
         result = dbInterface.commit(membershipInsert, membershipParams)
+
+        inviteEmailQuery = "select email from users where username = :username"
+        inviteEmailParams = {
+            "username": i
+        }
+
+        result2 = dbInterface.fetchOne(inviteEmailQuery, inviteEmailParams)
+        emailList.append(result2[0])
+
+    formattedMessage = "You have been invited by " + ownerUsername + " to the group: \n" + groupName + "\n" + ownerUsername + " said: \n" + message
+    print(formattedMessage)
+    sendMessage(formattedMessage, emailList)
 
     return redirect("/groups")
