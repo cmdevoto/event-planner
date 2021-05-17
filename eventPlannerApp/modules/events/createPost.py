@@ -17,7 +17,7 @@ def createPostSubmit(eventId):
     print(eventId)
     print(text)
 
-    insert_query = "insert into eventPostings values (:eventID, :ownerUsername, :postContent)"
+    insert_query = "insert into eventPostings (eventID, ownerUsername, postContent) values (:eventID, :ownerUsername, :postContent)"
     insert_params = {
         "eventID": eventId,
         "ownerUsername": current_user.get_id(),
