@@ -72,9 +72,9 @@
               <div class="row" justify="center" id="eventInfoHeader">
                 <h5 class="card-title">Posts</h5>
                 <a href="/event/createPost/{{- data["event"]["eventId"] -}}">
+                  <button type="button" class="btn btn-secondary">Create Post</button>
+                </a>
               </div>
-                <button type="button" class="btn btn-secondary">Create Post</button>
-              </a>
               {% for eventPost in data['eventPostings'] %}
                 <hr />
                 <h5 class="card-subtitle">{{ eventPost[2] }} posted: </h5>
