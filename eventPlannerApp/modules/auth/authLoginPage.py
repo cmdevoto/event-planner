@@ -11,7 +11,6 @@ def hello_route():
 
 @bp.route('/login', methods=['POST'])
 def loginSubmit():
-    email = request.form['email']
     password = request.form['pass']
     username = request.form['username']    
 
