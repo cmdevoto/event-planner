@@ -1,0 +1,65 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+<div class="container">
+
+  {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>{{ message }}</strong>
+            </div>
+          {% endfor %}
+       {% endif %}
+  {% endwith %}
+
+  <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/groups">My Groups</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="/creategroup">Create New Group</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/viewgroupinvites">View Group Invitations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/sendgroupinvite">Send Group Invitation</a>
+  </li>
+  </ul>
+
+  <h1 class="text-secondary"> Create New Group! </h1>
+ 
+  <form method="POST">
+  <fieldset>
+    <div class="form-group">
+      <label for="eventDesc">Group Name</label>
+      <input class="form-control" name="groupName" id="groupName" maxlength=20>
+    </div>
+
+    <div class="form-group">
+      <label for="eventLocation">Group Description</label>
+      <input class="form-control" name="groupDesc" id="groupDesc" maxlength=30>
+    </div>
+
+    <div class="form-group">
+      <label for="userSelect">Select Users to Invite</label>
+      <select multiple="multiple" class="form-control" name="userSelect" id="userSelect">
+          {% for item in data["users"] %}
+            <option>{{ item[0] }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="eventDesc">Message</label>
+      <textarea class="form-control" name="message" id="message" rows="1" maxlength=30></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Group!</button>
+  </fieldset>
+</form>
+ 
+</div>
+{% endblock %}
