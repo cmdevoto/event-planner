@@ -47,8 +47,8 @@ def createInvitationSubmit():
             msg['Subject'] = "localhost Invitation"
             print(messageText)
             msg.attach(MIMEText(messageText, 'text'))
-            s.send_message(msg)
-            s.quit()
+            server.send_message(msg)
+            server.quit()
             #server.sendmail(emailUser, recipients, messageText)
     print("email set up")
     event = request.form['eventSelect']
