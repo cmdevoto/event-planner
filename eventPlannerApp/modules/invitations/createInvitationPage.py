@@ -46,8 +46,8 @@ def createInvitationSubmit():
             msg['To'] = ', '.join(recipients)
             msg['Subject'] = "localhost Invitation"
             print(messageText)
-            msg.attach(MIMEText(messageText, 'text'))
-            server.send_message(msg)
+            msg.attach(MIMEText(messageText, 'plain', 'utf-8'))
+            server.sendmail(emailUser, recipients, msg.as_string())
             server.quit()
             #server.sendmail(emailUser, recipients, messageText)
     print("email set up")
