@@ -16,7 +16,7 @@ def createPostSubmit(eventId):
     text = request.form['text']
     print(eventId)
     print(text)
-    return redirect("/event/createPost/" + str(eventId))
+    return redirect("/event/" + str(eventId))
 
 
 
