@@ -30,6 +30,10 @@
   </ul>
 
   <br>
+  <a href="/groups">back</a>
+  <br> 
+
+  <br>
   <h3> Members of {{ data["groupInfo"][1] }}:</h3>
   <div class="jumbotron">
       <table class="table table-hover">
@@ -43,7 +47,7 @@
         </thead>
 	<tbody>
           {% for item in data["members"] %}
-          <tr class="table-success">
+          <tr class="table-primary">
             <th scope="row">{{item["lastName"]}}</th>
             <td>{{ item["firstName"] }}</td>
             <td>{{ item["username"] }}</td>

@@ -19,7 +19,6 @@ def findEventsPageRoute():
 
 @bp.route("/findevents", methods=['POST'])
 def registerEventPageRoute():
-    print("pressed register")
     
     try:
         eventID = request.args.get('eventID')

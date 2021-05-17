@@ -45,12 +45,10 @@ def createInvitationSubmit():
             msg['From'] = emailUser
             msg['To'] = ', '.join(recipients)
             msg['Subject'] = "You Have A New Pending localhost Invitation!"
-            print(messageText)
             msg.attach(MIMEText(messageText, 'plain', 'utf-8'))
             server.sendmail(emailUser, recipients, msg.as_string())
             server.quit()
             #server.sendmail(emailUser, recipients, messageText)
-    print("email set up")
     event = request.form['eventSelect']
     #print(event.split(':')[0])
     eventID = int(event.split(':')[0])
@@ -59,19 +57,13 @@ def createInvitationSubmit():
 
 
     ### NEED TO CHECK IF USER CAN INVITE PEOPLE ###
-    print("CREATE INVITE . PY")
     temp = dbInterface.fetchAll("select * from events where eventID = (:eventID)", {"eventID" : eventID})
-    print(temp)
     accessType = temp[0][5]
     owner = temp[0][4]
     creator = temp[0][7]
 
-    print(accessType)
-    print(owner)
-    print(creator)
 
     if accessType == "Private" or accessType == "private" and (owner != inviterUsername or creator != inviterUsername):
-        print("you don't have permissions to invite others to this event")    
         flash("You do not have permission to invite others to this event.")
         return redirect("/createinvitation")
 
@@ -88,14 +80,6 @@ def createInvitationSubmit():
 
     message = request.form['message']
 
-    print(event, file=sys.stderr)
-    print(eventID, file=sys.stderr)
-    print(inviterUsername, file=sys.stderr)
-    print(inviteeUsernames, file=sys.stderr)
-    print(groups, file=sys.stderr)
-    print(groupID, file=sys.stderr)
-    print(message, file=sys.stderr)
-
     # make list of all people invited , only send one invitation to each person
 
     if inviteeUsernames:
@@ -105,15 +89,20 @@ def createInvitationSubmit():
     
     for gid in groupID:
         tempQuery = dbInterface.fetchAll("select * from groupMembership where groupID = (:groupID)", {"groupID" : gid})
-        print(tempQuery)
         for t in tempQuery:
             inviteSet.add(t[0])
-    print(inviteSet)
 
     emailList = []
 
     # loop to make invitations (insert into eventInvitations)
     for i in inviteSet:
+
+        # check to see if a user has already been invited to the event
+        isPresent = dbInterface.fetchOne("select * from eventInvitations where eventID = (:eventID) and inviteeUsername = (:uname)", {"eventID" : eventID, "uname": i})
+        if isPresent:
+            flash("One of your selected users has already received an invitation. Please fix and try again.")
+            return redirect("/createinvitation")
+
         inviteInsertQuery =  "insert into eventInvitations (eventID, inviterUsername, inviteeUsername, invitationMessage, status) values (:eventID, :inviterUsername, :inviteeUsername, :invitationMessage, :status)"
     
         inviteInsertParams = {
@@ -136,7 +125,6 @@ def createInvitationSubmit():
 
     #sending an email to the people invited
     formattedMessage = "You have been invited by " + inviterUsername + " to the event: " + event + "\n" + inviterUsername + " said: \n" + message
-    print(formattedMessage)
     if(emailList):
         sendMessage(formattedMessage, emailList)
 

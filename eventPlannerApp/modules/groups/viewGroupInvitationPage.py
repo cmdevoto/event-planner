@@ -31,18 +31,14 @@ def viewGroupInvitationsPageRoute():
 
 @bp.route("/viewgroupinvites", methods=['POST'])
 def acceptGroupInvitationSubmit():
-    print("pressed accept")
 
     try:
         groupID = request.args.get('groupID')
-        print(groupID)
         username = current_user.get_id()
     except:
         flash("An error occured processing your request.")
         return redirect("/viewgroupinvites")
 
-
-    print("groupID = {}, inviterUsername = {}".format(groupID, username))
 
     acceptQuery = "update groupMembership set status = 'Accepted' where groupID = (:groupID) and username = (:username)"    
     queryParams = {
@@ -52,5 +48,4 @@ def acceptGroupInvitationSubmit():
 
     result = dbInterface.commit(acceptQuery, queryParams)
     flash('You successfully accepted this group invitation')
-    print(result)
     return redirect("/viewgroupinvites")

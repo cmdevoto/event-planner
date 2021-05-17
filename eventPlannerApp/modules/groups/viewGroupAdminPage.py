@@ -36,8 +36,8 @@ def viewGroupPageRoute(groupId):
         }
         members.append(userInfoDict)
 
+    # sort alphabetically by last name
     newMembers = sorted(members, key = lambda i: i['lastName'])
-    print(newMembers)
 
     data = {
         "members" : newMembers,
@@ -49,7 +49,6 @@ def viewGroupPageRoute(groupId):
 
 @bp.route("/groups/admin/<int:groupId>", methods=['POST'])
 def deleteMemberPageRoute(groupId):
-    print("pressed buton")
 
     try:
         groupID = request.args.get('groupID')
@@ -66,20 +65,6 @@ def deleteMemberPageRoute(groupId):
     result = dbInterface.commit(deleteQuery, params)
     flash("You successfully removed the user from the group")
     urlString = "/groups/admin/{}".format(groupID)
-    print(urlString)
     return redirect(urlString)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -13,8 +13,6 @@ def createPost(eventId):
 @login_required
 def createPostSubmit(eventId):
     text = request.form['text']
-    print(eventId)
-    print(text)
 
     insert_query = "insert into eventPostings (eventID, ownerUsername, postContent) values (:eventID, :ownerUsername, :postContent)"
     insert_params = {
