@@ -38,8 +38,7 @@ def createInvitationSubmit():
     emailUser = "noreply.localhost.app@gmail.com"
     emailPass = "ILoveRamzi123!"
     def sendMessage(messageText, recipients):
-        context = ssl.create_default_context()
-        with smtplib.SMTP(smtp_server, port, context=context) as server:
+        with smtplib.SMTP(smtp_server, port) as server:
             server.starttls()
             server.login(emailUser, emailPass)
             msg = MIMEMultipart()
