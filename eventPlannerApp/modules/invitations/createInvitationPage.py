@@ -39,7 +39,7 @@ def createInvitationSubmit():
     emailPass = "ILoveRamzi123!"
     def sendMessage(messageText, recipients):
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+        with smtplib.SMTP(smtp_server, port, context=context) as server:
             server.starttls()
             server.login(emailUser, emailPass)
             msg = MIMEMultipart()
