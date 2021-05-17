@@ -17,7 +17,6 @@ def createInvitationPageRoute():
     }
 
     resultingEvents = dbInterface.fetchAll("select eventID, description from events where associatedSchool = (:school)", params)
-    print(resultingEvents)
     resultingUsers = dbInterface.fetchAll("select username from users where associatedSchool = (:school)", params)
     resultingGroups = dbInterface.fetchAll("select groupID, groupName from groups where associatedSchool = (:school)", params)
     data = {
@@ -25,7 +24,6 @@ def createInvitationPageRoute():
         "users": resultingUsers,
         "groups": resultingGroups
     }
-    print(current_user.get_id())
     return render_template("invitations/createInvitation.html", data=data)
 
 
