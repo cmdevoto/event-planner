@@ -35,11 +35,11 @@ def createInvitationSubmit():
     smtp_server = "smtp.gmail.com"
     emailUser = "noreply.localhost.app@gmail.com"
     emailPass = "ILoveRamzi123!"
-    def sendMessage(message, recipients):
+    def sendMessage(messageText, recipients):
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(emailUser, emailPass)
-            server.sendmail(emailUser, recipients, message.rstrip())
+            server.sendmail(emailUser, recipients, messageText)
     print("email set up")
     event = request.form['eventSelect']
     #print(event.split(':')[0])
