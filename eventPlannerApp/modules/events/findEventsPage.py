@@ -10,7 +10,10 @@ from ... import dbInterface
 def findEventsPageRoute():
     today = date.today()
     formattedToday = today.strftime("%d-%b-%y")
-    resultingEvents = dbInterface.fetchAll("select * from events where eventtime > (:today) and (accessStatus = (:status) and ownerUsername != (:uname) and creatorUsername != (:uname) and eventID not in (select eventID from eventInvitations where inviteeUsername = (:uname)))", {"status": "Public", "uname": current_user.get_id(), "today" : formattedToday})
+    
+    school = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()}) 
+
+    resultingEvents = dbInterface.fetchAll("select * from events where associatedSchool = (:school) and eventtime > (:today) and (accessStatus = (:status) and ownerUsername != (:uname) and creatorUsername != (:uname) and eventID not in (select eventID from eventInvitations where inviteeUsername = (:uname)))", {"status": "Public", "uname": current_user.get_id(), "today" : formattedToday, "school": school[0]})
 
     data = {
         "events": resultingEvents
