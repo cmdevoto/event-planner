@@ -29,8 +29,24 @@
     <a class="nav-link" data-toggle="tab" href="/sendgroupinvite">Send Group Invitation</a>
   </li>
   </ul>
-  
+
   <div class="jumbotron">
+  <h4 style="font-style: italic;">Owned Groups: </h4>
+     <div style="display:grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px">
+        {% for item in data["ownedGroups"] %}
+          <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+          <div class="card-body">
+            <h4 class="card-title">{{ item[1] }}</h4>
+            <p name = "message" class="card-text" style="font-style: italic;">{{ item[2] }}</p>
+            <form method="get" action = "/groups/admin/{{- item[0] -}}">
+              <button class="btn btn-secondary btn-sm" type="submit">View Members</button>
+            </form>
+          </div>
+          </div>
+        {% endfor %}
+    </div>   
+  <br>
+  <h4 style="font-style: italic;"> My Group Memberships: </h4>
      <div style="display:grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px">
         {% for item in data["groups"] %}
           <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
@@ -39,7 +55,7 @@
             <h4 class="card-title">{{ item[1] }}</h4>
             <p name = "message" class="card-text" style="font-style: italic;">{{ item[2] }}</p>
 	    <form method="POST" action = "/groups?groupID={{ item[0] }}">
-              <button class="btn btn-secondary btn-sm" type="submit">Leave Group</button>
+              <button class="btn btn-danger btn-sm" type="submit">Leave Group</button>
             </form>
 	  </div>
           </div>

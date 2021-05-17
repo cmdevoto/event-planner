@@ -9,8 +9,11 @@ from ... import dbInterface
 def groupHomePageRoute():
     resultingGroups = dbInterface.fetchAll("select * from groups where groupID in (select groupID from groupMembership where username = (:uname) and status = 'Accepted')", {"uname" : current_user.get_id()})
  
+    ownedGroups = dbInterface.fetchAll("select * from groups where ownerUsername = (:uname)", {"uname": current_user.get_id()})
+
     data = {
-        "groups": resultingGroups
+        "groups": resultingGroups,
+        "ownedGroups": ownedGroups
     }
 
     return render_template("groups/groupHome.html", data=data)
