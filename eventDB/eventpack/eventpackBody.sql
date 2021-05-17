@@ -1,7 +1,7 @@
 create or replace package eventpack 
 as
   function checkValidAccess(username user.username%type, eventId events.eventID%type)
-    return char(5)
+    return CHAR(5)
   is
     cursor inviteCheck (un user.username%type, eid events.eventID%type)
     is
