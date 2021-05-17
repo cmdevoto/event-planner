@@ -1,5 +1,5 @@
 
-SQL*Loader: Release 11.2.0.2.0 - Production on Tue Apr 27 02:14:12 2021
+SQL*Loader: Release 11.2.0.2.0 - Production on Mon May 17 01:52:25 2021
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
@@ -27,10 +27,19 @@ GROUPID                              NEXT     *   ,  O(") CHARACTER
 STATUS                               NEXT     *   ,  O(") CHARACTER            
 INVITATIONMESSAGE                    NEXT     *   ,  O(") CHARACTER            
 
+Record 1: Rejected - Error on table GROUPMEMBERSHIP.
+ORA-02291: integrity constraint (EVENT_APP.GROUPIDFK) violated - parent key not found
+
+Record 2: Rejected - Error on table GROUPMEMBERSHIP.
+ORA-02291: integrity constraint (EVENT_APP.GROUPIDFK) violated - parent key not found
+
+Record 3: Rejected - Error on table GROUPMEMBERSHIP.
+ORA-02291: integrity constraint (EVENT_APP.GROUPIDFK) violated - parent key not found
+
 
 Table GROUPMEMBERSHIP:
-  3 Rows successfully loaded.
-  0 Rows not loaded due to data errors.
+  0 Rows successfully loaded.
+  3 Rows not loaded due to data errors.
   0 Rows not loaded because all WHEN clauses were failed.
   0 Rows not loaded because all fields were null.
 
@@ -40,11 +49,11 @@ Read   buffer bytes: 1048576
 
 Total logical records skipped:          0
 Total logical records read:             3
-Total logical records rejected:         0
+Total logical records rejected:         3
 Total logical records discarded:        0
 
-Run began on Tue Apr 27 02:14:12 2021
-Run ended on Tue Apr 27 02:14:12 2021
+Run began on Mon May 17 01:52:25 2021
+Run ended on Mon May 17 01:52:25 2021
 
 Elapsed time was:     00:00:00.02
-CPU time was:         00:00:00.01
+CPU time was:         00:00:00.00

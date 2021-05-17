@@ -1,3 +1,4 @@
+from datetime import date
 from flask import render_template, request, redirect, flash
 from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin, login_required
 
@@ -7,7 +8,10 @@ from ... import dbInterface
 @bp.route("/findevents")
 @login_required
 def findEventsPageRoute():
-    resultingEvents = dbInterface.fetchAll("select * from events where accessStatus = (:status) and ownerUsername != (:uname) and creatorUsername != (:uname) and eventID not in (select eventID from eventInvitations where inviteeUsername = (:uname))", {"status": "Public", "uname": current_user.get_id()})
+    today = date.today()
+    formattedToday = today.strftime("%d-%b-%y")
+    resultingEvents = dbInterface.fetchAll("select * from events where eventtime > (:today) and (accessStatus = (:status) and ownerUsername != (:uname) and creatorUsername != (:uname) and eventID not in (select eventID from eventInvitations where inviteeUsername = (:uname)))", {"status": "Public", "uname": current_user.get_id(), "today" : formattedToday})
+
     data = {
         "events": resultingEvents
     }

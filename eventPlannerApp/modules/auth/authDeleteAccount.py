@@ -13,12 +13,12 @@ def deleteAccount():
 @bp.route('/deleteAccount', methods=['POST'])
 @login_required
 def deleteAccountSubmit():
-    email = current_user.get_id()
+    username = current_user.get_id()
     password = request.form['pass'] 
 
-    searchQuery = "select PASSWORDHASH from users where email = :email"
+    searchQuery = "select PASSWORDHASH from users where username = :username"
     searchParams = {
-        "email": email
+        "username": username
         }
 
     result = dbInterface.fetchOne(searchQuery, searchParams)
@@ -26,9 +26,9 @@ def deleteAccountSubmit():
         if(check_password_hash(result[0], password)):
             print("password matches: proceed to deletion")
             
-            deleteQuery = "delete from users where email = :email"
+            deleteQuery = "delete from users where username = :username"
             deleteParams = {
-                "email": email
+                "username": username
                 }
 
             result = dbInterface.commit(deleteQuery, deleteParams)

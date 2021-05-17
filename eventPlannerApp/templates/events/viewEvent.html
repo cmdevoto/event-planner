@@ -12,6 +12,7 @@
       <a href="/event/edit/{{- data["event"]["eventId"] -}}">
         <button type="button" class="btn btn-secondary">Edit Event</button>
       </a>
+      
       <!--   endif   -->
     </div>
 
@@ -66,8 +67,14 @@
       {% if data['numEventPostings'] > 0 %}
       <div class="col">
         <div class="card mb-2" id="postsCard">
+          
           <div class="card-body">
-              <h5 class="card-title">Posts</h5>
+              <div class="row" justify="center" id="eventInfoHeader">
+                <h5 class="card-title">Posts</h5>
+                <a href="/event/createPost/{{- data["event"]["eventId"] -}}">
+                  <button type="button" class="btn btn-secondary">Create Post</button>
+                </a>
+              </div>
               {% for eventPost in data['eventPostings'] %}
                 <hr />
                 <h5 class="card-subtitle">{{ eventPost[2] }} posted: </h5>
@@ -88,6 +95,11 @@
   #eventInfoHeader {
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+
+  #createPostButton {
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   #cardRow {
