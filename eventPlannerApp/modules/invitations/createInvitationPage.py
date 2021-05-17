@@ -1,9 +1,11 @@
 from flask import render_template, request, redirect, flash
 from flask_login import login_required, current_user, login_user, logout_user, LoginManager, UserMixin, login_required
-
+import smtplib, ssl
 from . import bp
 from ... import dbInterface
 import sys
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 @bp.route("/createinvitation")
 @login_required
@@ -30,6 +32,25 @@ def createInvitationPageRoute():
 @bp.route("/createinvitation", methods=['POST'])
 def createInvitationSubmit():
     
+    # Setting up email sending
+    port = 587  # For SSL
+    smtp_server = "smtp.gmail.com"
+    emailUser = "noreply.localhost.app@gmail.com"
+    emailPass = "ILoveRamzi123!"
+    def sendMessage(messageText, recipients):
+        with smtplib.SMTP(smtp_server, port) as server:
+            server.starttls()
+            server.login(emailUser, emailPass)
+            msg = MIMEMultipart()
+            msg['From'] = emailUser
+            msg['To'] = ', '.join(recipients)
+            msg['Subject'] = "You Have A New Pending localhost Invitation!"
+            print(messageText)
+            msg.attach(MIMEText(messageText, 'plain', 'utf-8'))
+            server.sendmail(emailUser, recipients, msg.as_string())
+            server.quit()
+            #server.sendmail(emailUser, recipients, messageText)
+    print("email set up")
     event = request.form['eventSelect']
     #print(event.split(':')[0])
     eventID = int(event.split(':')[0])
@@ -89,6 +110,8 @@ def createInvitationSubmit():
             inviteSet.add(t[0])
     print(inviteSet)
 
+    emailList = []
+
     # loop to make invitations (insert into eventInvitations)
     for i in inviteSet:
         inviteInsertQuery =  "insert into eventInvitations (eventID, inviterUsername, inviteeUsername, invitationMessage, status) values (:eventID, :inviterUsername, :inviteeUsername, :invitationMessage, :status)"
@@ -102,5 +125,20 @@ def createInvitationSubmit():
         }
     
         result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
+
+        inviteEmailQuery = "select email from users where username = :username"
+        inviteEmailParams = {
+            "username": i
+        }
+
+        result2 = dbInterface.fetchOne(inviteEmailQuery, inviteEmailParams)
+        emailList.append(result2[0])
+
+    #sending an email to the people invited
+    formattedMessage = "You have been invited by " + inviterUsername + " to the event: " + event + "\n" + inviterUsername + " said: \n" + message
+    print(formattedMessage)
+    if(emailList):
+        sendMessage(formattedMessage, emailList)
+
 
     return redirect("/invitations")
