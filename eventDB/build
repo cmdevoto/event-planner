@@ -2,6 +2,8 @@ sqlplus -S event_app/rbD4eJUgYE9NliQxe5KAOxxb @createAll
 sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/users.ctl
 sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/groups.ctl
 sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/events.ctl
+sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/polls.ctl
+sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/pollRequest.ctl
 sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/eventInvitations.ctl
 sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/eventPostings.ctl
 sqlldr event_app/rbD4eJUgYE9NliQxe5KAOxxb control=ctls/groupMembership.ctl

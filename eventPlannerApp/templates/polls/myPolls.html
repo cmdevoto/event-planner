@@ -1,0 +1,48 @@
+{% extends 'pageBaseAuth.html' %}
+
+{% block pageContent %}
+
+<div class="container">
+
+  {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>{{ message }}</strong>
+            </div>
+          {% endfor %}
+       {% endif %}
+  {% endwith %}
+
+  <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/polls">Poll Invites</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="/createpoll">Create New Poll</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="/mypolls">My Polls</a>
+  </li>
+  </ul>
+  
+  <div class="jumbotron">
+     <div style="display:grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px">
+        {% for item in data["polls"] %}
+          <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+          <div class="card-header">Event Owner: {{ item[2] }}</div>
+          <div class="card-body">
+            <h4 class="card-title">{{ item[3] }}</h4>
+            <p name = "message" class="card-text">"{{ item[4] }}"</p>
+	    <form method="POST">
+              <button class="btn btn-secondary btn-sm" type="submit">View Poll Results</button>
+            </form>
+	  </div>
+          </div>
+        {% endfor %}
+    </div>
+	
+    </div>
+</div>
+{% endblock %}

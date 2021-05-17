@@ -3,9 +3,9 @@ SQL*Loader: Release 11.2.0.2.0 - Production on Mon May 17 06:04:24 2021
 
 Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
 
-Control File:   ctls/eventPostings.ctl
-Data File:      csv/eventPostings.csv
-  Bad File:     ctls/eventPostings.bad
+Control File:   ctls/pollRequest.ctl
+Data File:      csv/pollRequest.csv
+  Bad File:     ctls/pollRequest.bad
   Discard File:  none specified
  
  (Allow all discards)
@@ -17,17 +17,17 @@ Bind array:     64 rows, maximum of 256000 bytes
 Continuation:    none specified
 Path used:      Conventional
 
-Table EVENTPOSTINGS, loaded from every logical record.
+Table POLLREQUEST, loaded from every logical record.
 Insert option in effect for this table: INSERT
 
    Column Name                  Position   Len  Term Encl Datatype
 ------------------------------ ---------- ----- ---- ---- ---------------------
-EVENTID                             FIRST     *   ,  O(") CHARACTER            
-OWNERUSERNAME                        NEXT     *   ,  O(") CHARACTER            
-POSTCONTENT                          NEXT     *   ,  O(") CHARACTER            
+POLLID                              FIRST     *   ,  O(") CHARACTER            
+REQUESTEDUSERNAME                    NEXT     *   ,  O(") CHARACTER            
+STATUS                               NEXT     *   ,  O(") CHARACTER            
 
 
-Table EVENTPOSTINGS:
+Table POLLREQUEST:
   1 Row successfully loaded.
   0 Rows not loaded due to data errors.
   0 Rows not loaded because all WHEN clauses were failed.
@@ -45,5 +45,5 @@ Total logical records discarded:        0
 Run began on Mon May 17 06:04:24 2021
 Run ended on Mon May 17 06:04:24 2021
 
-Elapsed time was:     00:00:00.03
-CPU time was:         00:00:00.01
+Elapsed time was:     00:00:00.02
+CPU time was:         00:00:00.00
