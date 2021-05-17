@@ -100,6 +100,8 @@ def createInvitationSubmit():
             inviteSet.add(t[0])
     print(inviteSet)
 
+    emailList = []
+
     # loop to make invitations (insert into eventInvitations)
     for i in inviteSet:
         inviteInsertQuery =  "insert into eventInvitations (eventID, inviterUsername, inviteeUsername, invitationMessage, status) values (:eventID, :inviterUsername, :inviteeUsername, :invitationMessage, :status)"
@@ -114,10 +116,18 @@ def createInvitationSubmit():
     
         result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
 
+        inviteEmailQuery = "select email from users where username = :username"
+        inviteEmailParams = {
+            "username": i
+        }
+
+        result2 = dbInterface.fetchOne(inviteEmailQuery, inviteEmailParams)
+        emailList.append(result2)
+
     #sending an email to the people invited
 
-
-    sendMessage(message, "brendandivney@gmail.com")
+    print(emailList)
+    sendMessage("You have been invited by " + inviterUsername + " to the event: \n" + event + "\nThey said: \n" + message, emailList)
 
 
     return redirect("/invitations")
