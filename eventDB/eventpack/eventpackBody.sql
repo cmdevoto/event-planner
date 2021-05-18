@@ -8,16 +8,16 @@ as
       select status
       from eventInvitations eInv
       where eInv.eventID = eid and eInv.inviteeUsername = un;
-    cursor eventData (eid events.eventID%type)
+    cursor eventData (un users.username%type, eid events.eventID%type)
     is
       select ownerUsername, creatorUsername
       from events e
-      where e.ownerUsername = eid or e.creatorUsername = eid;
+      where (e.ownerUsername = un or e.creatorUsername = un) and e.eventID = eid;
     eventOwner events.ownerUsername%type;
     eventCreator events.creatorUsername%type;
     eventInvStatus eventInvitations.status%type;
   begin
-    open eventData(eventId);
+    open eventData(username, eventId);
     loop
       fetch eventData into eventOwner, eventCreator;
       exit when eventData%notfound;
