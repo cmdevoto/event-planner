@@ -1,7 +1,7 @@
 from flask import render_template, redirect
 from flask.helpers import url_for
 
-from flask_login import login_required
+from flask_login import current_user, login_required
 
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField, StringField, SelectField
