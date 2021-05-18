@@ -45,7 +45,7 @@ def editEventPageRoute(eventId):
       "creatorName": ""
     }
 
-    print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get()))
+    print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get_id()))
 
     if current_user.get_id() != event["ownerUsername"]:
         return redirect("/events")
