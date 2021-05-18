@@ -22,7 +22,7 @@ def editEventPageRoute(eventId):
     }
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
-     if not eventFromDb:
+    if not eventFromDb:
         print("no event from db")
         return redirect("/events")
 
