@@ -75,9 +75,11 @@
           <div class="card-body">
               <div class="row" justify="center" id="eventInfoHeader">
                 <h5 class="card-title">Posts</h5>
+                {%  if data["currentUserId"] == data["event"]["ownerUsername"]  %}
                 <a href="/event/createPost/{{- data["event"]["eventId"] -}}">
                   <button type="button" class="btn btn-secondary">Create Post</button>
                 </a>
+                {%   endif   %}
               </div>
               {% for eventPost in data['eventPostings'] %}
                 <hr />
