@@ -23,6 +23,7 @@ def editEventPageRoute(eventId):
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
     if not eventFromDb:
+        print("no event from db")
         return redirect("/events")
 
     eventDateTime = eventFromDb[2]
@@ -45,9 +46,10 @@ def editEventPageRoute(eventId):
     }
 
     print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get())
-    
-    if event["ownerUsername"] != current_user.get_id():
+
+    if current_user.get_id() != event["ownerUsername"]:
         return redirect("/events")
+
 
     ownerQuery = "select firstname, lastname from users where username = :ownerUsername"
     ownerQueryParams = { "ownerUsername": eventFromDb[4] }
