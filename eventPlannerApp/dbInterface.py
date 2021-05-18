@@ -44,9 +44,8 @@ def commit(query, args):
     dbConnection.close()
     return result
 
-def runPlSqlFunction(functionName, args):
+def runPlSqlFunction(functionName, returnType, args):
     dbConnection = __getDatabaseConnection__()
     cursor = dbConnection.cursor()
-    result = cursor.callfunc(functionName, args)
-    dbConnection.close()
+    result = cursor.callfunc(functionName, returnType, args)
     return result
