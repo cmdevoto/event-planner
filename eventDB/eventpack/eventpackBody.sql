@@ -1,7 +1,7 @@
 create or replace package eventpack 
 as
   function checkValidAccess(username user.username%type, eventId events.eventID%type)
-    return VARCHAR2
+    return varchar2
   is
     cursor inviteCheck (un user.username%type, eid events.eventID%type)
     is
@@ -16,24 +16,24 @@ as
     eventOwner events.ownerUsername%type;
     eventCreator events.creatorUsername%type;
     eventInvStatus eventInvitations.status%type;
-    begin
-      open(eventData);
-      loop
-        fetch eventData into eventOwner, eventCreator;
-        exit when eventData%notfound;
-        return 'true';
-      end loop;
-      close eventData;
+  begin
+    open(eventData);
+    loop
+      fetch eventData into eventOwner, eventCreator;
+      exit when eventData%notfound;
+      return 'true';
+    end loop;
+    close eventData;
 
-      open(inviteCheck);
-      loop
-          fetch inviteCheck into eventInvStatus;
-          exit when inviteCheck%notfound;
-          return 'true';
-      end loop;
-      close inviteCheck;
-      return 'false';
-    end;
+    open(inviteCheck);
+    loop
+      fetch inviteCheck into eventInvStatus;
+      exit when inviteCheck%notfound;
+      return 'true';
+    end loop;
+    close inviteCheck;
+    return 'false';
+  end;
 
 end eventpack;
 /
