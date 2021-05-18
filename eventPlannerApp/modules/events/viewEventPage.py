@@ -18,11 +18,21 @@ def viewEventPageRoute(eventId):
     }
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
+    if not eventFromDb:
+        return redirect("/events")
+
+
+    if eventFromDb[5] != 'public':
+        canAccess = dbInterface.runPlSqlFunction("eventpack.checkValidAccess", str, [current_user.get_id(), eventId])
+        print("Checking access: {}, {}, {}".format(current_user.get_id(), eventId, canAccess))
+        if canAccess == 'false':
+            return redirect("/events")
+
     eventDateTime = eventFromDb[2]
     dateString = "{}, {} {}, {}".format(
       eventDateTime.strftime("%A"),
-      calendar.month_name[eventDateTime.month], 
-      eventDateTime.day, 
+      calendar.month_name[eventDateTime.month],
+      eventDateTime.day,
       eventDateTime.year
     )
     timeString = eventDateTime.strftime("%I:%M %p")
@@ -45,7 +55,7 @@ def viewEventPageRoute(eventId):
     ownerQueryParams = { "ownerUsername": eventFromDb[4] }
     owner = dbInterface.fetchOne(ownerQuery, ownerQueryParams)
     event["ownerName"] = "{} {}".format(owner[0], owner[1])
-    
+
     if(event["ownerUsername"] != event["creatorUsername"]):
         creatorQuery = "select firstname, lastname from users where username = :creatorUsername"
         creatorQueryParams = { "creatorUsername": eventFromDb[7] }
@@ -57,7 +67,7 @@ def viewEventPageRoute(eventId):
         'eventId': eventId
     }
     eventPostings = dbInterface.fetchAll(eventPostingsQuery, eventPostingsQueryArgs)
-    
+
     data = {
       "currentUserId": current_user.get_id(),
       "event": event,
