@@ -10,11 +10,11 @@ from email.mime.text import MIMEText
 @login_required
 def sendGroupInvitationPageRoute():
 
-    school = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()}) 
+    school = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()})
     params = {
         "school": school[0]
     }
-    
+
     resultingUsers = dbInterface.fetchAll("select username from users where associatedSchool = (:school)", params)
     resultingGroups = dbInterface.fetchAll("select groupID, groupName from groups where associatedSchool = (:school)", params)
     data = {
@@ -27,7 +27,7 @@ def sendGroupInvitationPageRoute():
 
 @bp.route("/sendgroupinvite", methods=['POST'])
 def sendGroupInvitationSubmit():
-    
+
     # Setting up email sending
     port = 587  # For SSL
     smtp_server = "smtp.gmail.com"
@@ -47,12 +47,12 @@ def sendGroupInvitationSubmit():
 
     # list of people invited
     inviteeUsernames = request.form.getlist('userSelect')
-    
+
     group = request.form['groupSelect']
     groupID = int(group.split(':')[0])
 
     ownerUsername = dbInterface.fetchOne("select ownerUsername from groups where groupID = (:groupID)", {"groupID": groupID})
-    
+
     if ownerUsername[0] != current_user.get_id():
         flash("You do not have permission to invite others to join this group.")
         return redirect("/sendgroupinvite")
@@ -63,21 +63,21 @@ def sendGroupInvitationSubmit():
     # i think we should check to see if something exists currently
     emailList = []
     for i in inviteeUsernames:
-        
+
         isPresent = dbInterface.fetchOne("select * from groupMembership where username = (:username) and groupID = (:groupID)", {"username": i, "groupID": groupID})
         if isPresent:
             flash("One of your selected users already belongs to the group. Please fix and try again.")
             return redirect("/sendgroupinvite")
-        
+
         inviteInsertQuery = "insert into groupMembership values (:username, :groupID, :status, :invitationMessage)"
-    
+
         inviteInsertParams = {
-        "username": current_user.get_id(),
+        "username": i,
         "groupID": groupID,
         "status": "Pending",
         "invitationMessage": message
         }
-    
+
         result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
 
         inviteEmailQuery = "select email from users where username = :username"
