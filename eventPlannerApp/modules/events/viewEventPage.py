@@ -12,6 +12,10 @@ def viewEventPageRoute(eventId):
 
   # ToDo: Access Checks. Redirect if it doesn't exist
 
+    canAccess = dbInterface.runPlSqlFunction("checkValidAccess", [current_user.get_id(), eventId])
+    if canAccess == 'false':
+      return redirect("/events")
+
     eventQuery = "select * from events where eventId=:eventId"
     eventQueryParams = {
       "eventId": eventId
