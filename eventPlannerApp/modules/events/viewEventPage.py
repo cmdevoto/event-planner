@@ -18,6 +18,9 @@ def viewEventPageRoute(eventId):
     }
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
+    if not eventFromDb:
+        return redirect("/events")
+
     eventDateTime = eventFromDb[2]
     dateString = "{}, {} {}, {}".format(
       eventDateTime.strftime("%A"),

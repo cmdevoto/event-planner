@@ -1,7 +1,7 @@
 from flask import render_template, redirect
 from flask.helpers import url_for
 
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField, StringField, SelectField
@@ -22,6 +22,9 @@ def editEventPageRoute(eventId):
     }
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
+    if not eventFromDb:
+        return redirect("/events")
+
     eventDateTime = eventFromDb[2]
     event = {
       "eventId": eventFromDb[0],
@@ -41,6 +44,9 @@ def editEventPageRoute(eventId):
       "creatorName": ""
     }
 
+    if event["ownerUsername"] is not current_user.get_id():
+        return redirect("/events")
+
     ownerQuery = "select firstname, lastname from users where username = :ownerUsername"
     ownerQueryParams = { "ownerUsername": eventFromDb[4] }
     owner = dbInterface.fetchOne(ownerQuery, ownerQueryParams)
@@ -58,10 +64,6 @@ def editEventPageRoute(eventId):
     }
 
     form = EditEventForm()
-
-    if form.is_submitted() and not form.validate():
-        print('Form Errors: {}'.format(form.errors))
-        # ToDo: Form Errors Updates
 
     if form.validate_on_submit():
         print('Form Submitted: {}'.format(form))
