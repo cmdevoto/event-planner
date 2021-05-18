@@ -3,7 +3,7 @@
 {% block pageContent %}
 <div class="container">
   <div class="jumbotron">
-    
+
     <a href="/events">back</a>
     <br> <br>
 
@@ -12,12 +12,12 @@
       <h1>{{ data["event"]["name"] }}</h1>
 
       <!--  TODO: Uncomment and see if this works -->
-      <!--  if data["currentUserId"] == data["event"]["ownerUsername"]  -->
+      {%  if data["currentUserId"] == data["event"]["ownerUsername"]  %}
       <a href="/event/edit/{{- data["event"]["eventId"] -}}">
         <button type="button" class="btn btn-secondary">Edit Event</button>
       </a>
-      
-      <!--   endif   -->
+
+      {%   endif   %}
     </div>
 
     <!-- Row for Main Info and Additonal Info-->
@@ -48,17 +48,17 @@
           <hr/>
           <h5 class="card-subtitle">
             {% if data["event"]["accessType"] == "private" %}
-              Private Event 
+              Private Event
             {% elif data["event"]["accessType"] == "public" %}
               Public Event
             {% endif %}
           </h5>
           <hr/>
-          <h5 class="card-text">Organized By:</h5> 
+          <h5 class="card-text">Organized By:</h5>
           <h5 class="card-text"> {{ data["event"]["ownerName"] }} </h5>
           {% if data["event"]["ownerUsername"] != data["event"]["creatorUsername"] %}
             <hr/>
-            <h5 class="card-text">Created By:</h5> 
+            <h5 class="card-text">Created By:</h5>
             <h5 class="card-text"> {{ data["event"]["creatorName"] }} </h5>
           {% endif %}
         </div>
@@ -68,10 +68,10 @@
     <!-- Row for Event Postings and Polls -->
     <div class="row" justify="center" id="cardRow">
       <!-- Column for Event Postings -->
-      
+
       <div class="col">
         <div class="card mb-2" id="postsCard">
-          
+
           <div class="card-body">
               <div class="row" justify="center" id="eventInfoHeader">
                 <h5 class="card-title">Posts</h5>
@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-      
+
 
       <!-- Column  -->
     </div>
