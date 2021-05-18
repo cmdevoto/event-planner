@@ -44,7 +44,9 @@ def editEventPageRoute(eventId):
       "creatorName": ""
     }
 
-    if event["ownerUsername"] is not current_user.get_id():
+    print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get())
+    
+    if event["ownerUsername"] != current_user.get_id():
         return redirect("/events")
 
     ownerQuery = "select firstname, lastname from users where username = :ownerUsername"
