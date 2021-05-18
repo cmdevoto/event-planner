@@ -57,7 +57,6 @@ def viewEventPageRoute(eventId):
         'eventId': eventId
     }
     eventPostings = dbInterface.fetchAll(eventPostingsQuery, eventPostingsQueryArgs)
-    print("Event Postings: {}".format(eventPostings))
     
     data = {
       "currentUserId": current_user.get_id(),

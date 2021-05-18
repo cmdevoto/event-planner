@@ -22,7 +22,6 @@ def loginSubmit():
     result = dbInterface.fetchOne(searchQuery, searchParams)
     if result:
         if(check_password_hash(result[0], password)):
-            print("logged in")
             user = User.User()
             user.id = username
             login_user(user)
@@ -30,9 +29,7 @@ def loginSubmit():
             return redirect("/events")
             #return redirect("/test/databaseRetrieveItems")
         else:
-            print("not logged in")
             flash("Incorrect Username or Password")
             return redirect("/login")
     else:
-        print("not logged in")
         return redirect("/login")

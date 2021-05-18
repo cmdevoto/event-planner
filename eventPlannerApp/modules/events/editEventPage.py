@@ -59,12 +59,12 @@ def editEventPageRoute(eventId):
 
     form = EditEventForm()
 
-    if form.is_submitted() and not form.validate():
-        print('Form Errors: {}'.format(form.errors))
+    #if form.is_submitted() and not form.validate():
+        #print('Form Errors: {}'.format(form.errors))
         # ToDo: Form Errors Updates
 
     if form.validate_on_submit():
-        print('Form Submitted: {}'.format(form))
+        #print('Form Submitted: {}'.format(form))
         
         updateEventQuery = '''update events 
           set description = :description, eventTime = :eventTime, location = :location, 
@@ -72,8 +72,8 @@ def editEventPageRoute(eventId):
           where eventId = :eventId
           '''
 
-        print("Hour: {}".format(form.hour.data))
-        print("AMPM: {}".format(form.amPm.data))
+        #print("Hour: {}".format(form.hour.data))
+        #print("AMPM: {}".format(form.amPm.data))
 
         updateEventQueryArgs = {
           'description': form.description.data,

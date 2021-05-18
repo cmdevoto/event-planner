@@ -12,18 +12,14 @@ from email.mime.text import MIMEText
 def createGroupPageRoute():
 
     school = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()}) 
-    print(school)
-    print(current_user.get_id())
     params = {
         "school": school[0]
     }
 
     resultingUsers = dbInterface.fetchAll("select username from users where associatedSchool = (:school)", params)
-    print(resultingUsers)
     data = {
         "users": resultingUsers
     }
-    print(current_user.get_id())
     return render_template("groups/createGroup.html", data=data)
 
 
@@ -43,7 +39,6 @@ def createGroupSubmit():
             msg['From'] = emailUser
             msg['To'] = ', '.join(recipients)
             msg['Subject'] = "You Have A New Pending localhost Invitation!"
-            print(messageText)
             msg.attach(MIMEText(messageText, 'plain', 'utf-8'))
             server.sendmail(emailUser, recipients, msg.as_string())
             server.quit()
@@ -52,7 +47,14 @@ def createGroupSubmit():
     groupDesc = request.form['groupDesc']
     ownerUsername = current_user.get_id()
     associatedSchool = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()})
-    
+   
+    # check to see if group with that name exists currently at that school
+
+    isPresent = dbInterface.fetchOne("select * from groups where groupName = (:name) and associatedSchool = (:school)", {"name": groupName, "school": associatedSchool[0]})
+    if isPresent:
+        flash("A group already exists at your school with that name. Please enter a new name.")
+        return redirect("/creategroup") 
+
 
     groupInsertQuery = "insert into groups (groupName, groupDesc, ownerUsername, associatedSchool) values (:groupName, :groupDesc, :ownerUsername, :associatedSchool)"
     params = {
@@ -94,7 +96,6 @@ def createGroupSubmit():
         emailList.append(result2[0])
 
     formattedMessage = "You have been invited by " + ownerUsername + " to the group: " + groupName + "\n" + ownerUsername + " said: \n" + message
-    print(formattedMessage)
     if(emailList):
         sendMessage(formattedMessage, emailList)
 

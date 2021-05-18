@@ -14,7 +14,6 @@ def createEventPageRoute():
         "groups": resultingGroups
     }
     #logout_user()
-    print(current_user.get_id())
     return render_template("events/createEvent.html", data=data)
 
 
@@ -31,16 +30,6 @@ def createEventSubmit():
     creatorUsername = current_user.get_id()
     associatedSchool = dbInterface.fetchOne("select associatedSchool from users where username = (:username)", {"username": creatorUsername})    
 
-    print(desc, file=sys.stderr)
-    print(time, file=sys.stderr)
-    print(loc, file=sys.stderr)
-    print(owner, file=sys.stderr)
-    print(groups, file=sys.stderr)
-    print(status, file=sys.stderr)
-    print(creatorUsername, file=sys.stderr)
-    print(associatedSchool[0], file=sys.stderr)
-
-    
     # many to many events to groups, will get the groups from the form and insert them into the new table
 
     # NOTE: when inserting into events, groups, eventPostings, you must specify the column names bc it gets confused with the seq/trigger

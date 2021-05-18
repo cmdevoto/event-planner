@@ -24,7 +24,7 @@ def deleteAccountSubmit():
     result = dbInterface.fetchOne(searchQuery, searchParams)
     if result:
         if(check_password_hash(result[0], password)):
-            print("password matches: proceed to deletion")
+            #print("password matches: proceed to deletion")
             
             deleteQuery = "delete from users where username = :username"
             deleteParams = {
@@ -32,16 +32,13 @@ def deleteAccountSubmit():
                 }
 
             result = dbInterface.commit(deleteQuery, deleteParams)
-            print("deletion successful")
             flash("Successfully Deleted Your Account!")
             logout_user()
             return redirect("/login")
         else:
-            print("passwords do not match")
             flash("The Pasword You Entered Does Not Match")
             return redirect("/deleteAccount")
     else:
-        print("no user found, fatal")
         flash("No User FOund, Fatal")
         return redirect("/login")
 

@@ -21,9 +21,7 @@ def sendGroupInvitationPageRoute():
         "users": resultingUsers,
         "groups": resultingGroups
     }
-    print(data["groups"])
 
-    print(current_user.get_id())
     return render_template("groups/sendGroupInvite.html", data=data)
 
 
@@ -43,7 +41,6 @@ def sendGroupInvitationSubmit():
             msg['From'] = emailUser
             msg['To'] = ', '.join(recipients)
             msg['Subject'] = "You Have A New Pending localhost Invitation!"
-            print(messageText)
             msg.attach(MIMEText(messageText, 'plain', 'utf-8'))
             server.sendmail(emailUser, recipients, msg.as_string())
             server.quit()
@@ -58,7 +55,7 @@ def sendGroupInvitationSubmit():
     
     if ownerUsername[0] != current_user.get_id():
         flash("You do not have permission to invite others to join this group.")
-        return redirect("/creategroupinvite")
+        return redirect("/sendgroupinvite")
 
     message = request.form['message']
 
@@ -92,7 +89,6 @@ def sendGroupInvitationSubmit():
         emailList.append(result2[0])
 
     formattedMessage = "You have been invited by " + current_user.get_id() + " to the group: " + group + "\n" + current_user.get_id() + " said: \n" + message
-    print(formattedMessage)
     if(emailList):
         sendMessage(formattedMessage, emailList)
 

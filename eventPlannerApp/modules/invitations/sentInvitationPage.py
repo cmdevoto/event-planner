@@ -10,7 +10,6 @@ import sys
 def sentInvitationsPageRoute():
     resultingInvites = dbInterface.fetchAll("select * from eventInvitations where inviterUsername = (:iid) and status = 'Pending'", {"iid" : current_user.get_id()})
     inviteInfo = []
-    print(current_user.get_id())
     for i in resultingInvites:
         eventInfo = dbInterface.fetchOne("select * from events where eventID = (:id)", {"id" : i[0]})
         inviteInfoDict = {}
@@ -29,12 +28,10 @@ def sentInvitationsPageRoute():
         "invitations": resultingInvites,
         "invitationInfo" : inviteInfo
     }
-    print(data["invitationInfo"])
     return render_template("invitations/sentInvitations.html", data=data)
 
 @bp.route("/sentinvitations", methods=['POST'])
 def rescindInvitationSubmit():
-    print("pressed button")
 
     try:
         eventID = request.args.get('eventID')
@@ -44,7 +41,6 @@ def rescindInvitationSubmit():
         flash("An error occured while trying to process your request.")
         return redirect("/sentinvitations")
 
-    print("eventID = {}, inviterUsername = {}, inviteeUsername = {}".format(eventID, inviterUsername, inviteeUsername))
     
     deleteQuery = "delete from eventInvitations where eventID = (:eventID) and inviterUsername = (:inviterUsername) and inviteeUsername = (:inviteeUsername)"
     queryParams = {
@@ -54,5 +50,4 @@ def rescindInvitationSubmit():
     }
     result = dbInterface.commit(deleteQuery, queryParams)
     flash('You successfully rescinded this invitation.')
-    print(result)
     return redirect("/sentinvitations")

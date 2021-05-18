@@ -20,7 +20,6 @@ def groupHomePageRoute():
 
 @bp.route("/groups", methods=['POST'])
 def leaveGroupSubmit():
-    print("leaving group")
 
     try:
         groupID = request.args.get('groupID')
