@@ -45,7 +45,7 @@ def editEventPageRoute(eventId):
       "creatorName": ""
     }
 
-    print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get())
+    print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get()))
 
     if current_user.get_id() != event["ownerUsername"]:
         return redirect("/events")
@@ -56,7 +56,7 @@ def editEventPageRoute(eventId):
     owner = dbInterface.fetchOne(ownerQuery, ownerQueryParams)
     event["ownerName"] = "{} {}".format(owner[0], owner[1])
     
-    if(event["ownerUsername"] != event["creatorUsername"]):
+    if event["ownerUsername"] != event["creatorUsername"]:
         creatorQuery = "select firstname, lastname from users where username = :creatorUsername"
         creatorQueryParams = { "creatorUsername": eventFromDb[7] }
         creator = dbInterface.fetchOne(creatorQuery, creatorQueryParams)
