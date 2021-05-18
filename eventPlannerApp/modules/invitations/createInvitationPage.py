@@ -49,7 +49,7 @@ def createInvitationSubmit():
     print(owner)
     print(creator)
 
-    if accessType == "Private" or accessType == "private" and (owner != inviterUsername or creator != inviterUsername):
+    if (accessType == "Private" or accessType == "private") and (owner != inviterUsername or creator != inviterUsername):
         print("you don't have permissions to invite others to this event")    
         flash("You do not have permission to invite others to this event.")
         return redirect("/createinvitation")
