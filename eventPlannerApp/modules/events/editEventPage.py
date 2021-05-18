@@ -23,7 +23,7 @@ def editEventPageRoute(eventId):
     eventFromDb = dbInterface.fetchOne(eventQuery, eventQueryParams)
 
     if not eventFromDb:
-        print("no event from db")
+        #print("no event from db")
         return redirect("/events")
 
     eventDateTime = eventFromDb[2]
@@ -45,7 +45,7 @@ def editEventPageRoute(eventId):
       "creatorName": ""
     }
 
-    print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get_id()))
+    #print("Trying to edit: {} {}".format(event["ownerUsername"], current_user.get_id()))
 
     if current_user.get_id() != event["ownerUsername"]:
         return redirect("/events")
@@ -86,7 +86,7 @@ def editEventPageRoute(eventId):
             year=int(form.year.data),
             month=int(form.month.data),
             day=int(form.day.data),
-            hour=int(form.hour.data) if form.amPm == 'PM' else int(form.hour.data) + 12,
+            hour=int(form.hour.data) if form.amPm == 'PM' else (int(form.hour.data) + 12) % 24,
             minute=int(form.minute.data),
             ),
           'location': form.location.data,

@@ -24,7 +24,7 @@ def viewEventPageRoute(eventId):
 
     if eventFromDb[5] != 'public':
         canAccess = dbInterface.runPlSqlFunction("eventpack.checkValidAccess", str, [current_user.get_id(), eventId])
-        print("Checking access: {}, {}, {}".format(current_user.get_id(), eventId, canAccess))
+        #print("Checking access: {}, {}, {}".format(current_user.get_id(), eventId, canAccess))
         if canAccess == 'false':
             return redirect("/events")
 
