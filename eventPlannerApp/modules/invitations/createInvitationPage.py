@@ -89,9 +89,13 @@ def createInvitationSubmit():
         tempQuery = dbInterface.fetchAll("select * from groupMembership where groupID = (:groupID)", {"groupID" : gid})
         for t in tempQuery:
             inviteSet.add(t[0])
+        ownerQuery = dbInterface.fetchOne("select ownerUsername from groups where ownerUsername = (:ownerUsername)", {"ownerUsername": owner})
+            inviteSet.add(ownerQuery[0])
 
-    inviteSet.add(owner)
-    inviteSet.add(creator)
+    if current_user.get_id() != owner:
+        inviteSet.add(owner)
+    if current_user.get_id() != creator:
+        inviteSet.add(creator)
 
     emailList = []
 
