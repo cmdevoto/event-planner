@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 @login_required
 def createInvitationPageRoute():
 
-    school = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()}) 
+    school = dbInterface.fetchOne("select associatedSchool from users where username = (:uname)", {"uname": current_user.get_id()})
     params = {
         "school": school[0]
     }
@@ -29,7 +29,7 @@ def createInvitationPageRoute():
 
 @bp.route("/createinvitation", methods=['POST'])
 def createInvitationSubmit():
-    
+
     # Setting up email sending
     port = 587  # For SSL
     smtp_server = "smtp.gmail.com"
@@ -61,14 +61,14 @@ def createInvitationSubmit():
     creator = temp[0][7]
 
 
-    if accessType == "Private" or accessType == "private" and (owner != inviterUsername or creator != inviterUsername):
+    if (accessType == "Private" or accessType == "private") and (owner != inviterUsername or creator != inviterUsername):
         flash("You do not have permission to invite others to this event.")
         return redirect("/createinvitation")
 
 
     # list of people invited
     inviteeUsernames = request.form.getlist('userSelect')
-    
+
     # list of groups invited
     groups = request.form.getlist('groupSelect')
     groupID = []
@@ -83,8 +83,8 @@ def createInvitationSubmit():
     if inviteeUsernames:
         inviteSet = set(inviteeUsernames)
     else:
-        inviteSet = set()   
-    
+        inviteSet = set()
+
     for gid in groupID:
         tempQuery = dbInterface.fetchAll("select * from groupMembership where groupID = (:groupID)", {"groupID" : gid})
         for t in tempQuery:
@@ -102,7 +102,7 @@ def createInvitationSubmit():
             return redirect("/createinvitation")
 
         inviteInsertQuery =  "insert into eventInvitations (eventID, inviterUsername, inviteeUsername, invitationMessage, status) values (:eventID, :inviterUsername, :inviteeUsername, :invitationMessage, :status)"
-    
+
         inviteInsertParams = {
         "eventID": eventID,
         "inviterUsername": inviterUsername,
@@ -110,7 +110,7 @@ def createInvitationSubmit():
         "invitationMessage": message,
         "status": "Pending"
         }
-    
+
         result = dbInterface.commit(inviteInsertQuery, inviteInsertParams)
 
         inviteEmailQuery = "select email from users where username = :username"
