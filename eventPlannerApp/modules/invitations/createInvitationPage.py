@@ -89,7 +89,7 @@ def createInvitationSubmit():
         tempQuery = dbInterface.fetchAll("select * from groupMembership where groupID = (:groupID)", {"groupID" : gid})
         for t in tempQuery:
             inviteSet.add(t[0])
-        ownerQuery = dbInterface.fetchOne("select ownerUsername from groups where ownerUsername = (:ownerUsername)", {"ownerUsername": owner})
+        ownerQuery = dbInterface.fetchOne("select ownerUsername from groups where ownerUsername = (:ownerUsername) and groupID = (:groupID)", {"ownerUsername": owner, "groupID" : gid})
         if ownerQuery[0] != owner:
             inviteSet.add(ownerQuery[0])
 
