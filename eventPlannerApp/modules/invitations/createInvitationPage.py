@@ -90,6 +90,9 @@ def createInvitationSubmit():
         for t in tempQuery:
             inviteSet.add(t[0])
 
+    inviteSet.add(owner)
+    inviteSet.add(creator)
+
     emailList = []
 
     # loop to make invitations (insert into eventInvitations)
