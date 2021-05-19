@@ -125,7 +125,7 @@ class EditEventForm(FlaskForm):
         )
     year = IntegerField('Year', validators=[DataRequired(message="Year is a required field."), NumberRange(message="Year should be a valid year number.", min=1900, max=2400)])
     hour = IntegerField('Hour', validators=[DataRequired(message="Hour is a required field."), NumberRange(message="Hour should be between 1 and 12.", min=1, max=12)])
-    minute = IntegerField('Minute', validators=[DataRequired(message="Minute is a required field."), NumberRange(message="Minute should be between 1 and 60.", min=1, max=60)])
+    minute = IntegerField('Minute', validators=[DataRequired(message="Minute is a required field."), NumberRange(message="Minute should be between 0 and 60.", min=0, max=60)])
     amPm = SelectField('AM/PM',
         choices=[('AM', 'AM'), ('PM', 'PM')],
         validators=[DataRequired()]
